@@ -1,0 +1,28 @@
+Hay un bug visual en public/sitio/index.html (la wiki):
+
+1. Texto verde en diagonal superpuesto sobre las tarjetas. Se ve
+   rotado (unos 45-60°), en color verde (el mismo del tema), y
+   atraviesa el contenido de las secciones de "Determinación de
+   ingresos" (tarjetas "90% de lo soportado", "Condición de
+   cotización", "Tope 1,5 SMMLV"). Las palabras que alcanzo a ver
+   son fragmentos de ocupaciones: "servicios profesionales",
+   "técnicos o tecnólogos", "conductores...". Parece que
+   encabezados o celdas de una tabla (probablemente la matriz de
+   ocupaciones/CIIU) se están renderizando rotados y fuera de su
+   contenedor.
+
+   - Busca en el CSS y en el JS reglas con rotate(, writing-mode,
+     position: absolute o fixed que afecten esos textos.
+   - Identifica qué elemento los genera y por qué se escapa de su
+     tabla/contenedor.
+   - Corrígelo para que quede dentro de su sección y no se
+     superponga con nada. Si es un encabezado rotado de tabla,
+     contenlo con overflow controlado.
+
+2. Los títulos de las tarjetas ("90% de lo soportado", "Condición
+   de cotización", "Tope 1,5 SMMLV") se ven desplazados hacia la
+   derecha, no alineados a la izquierda. Revísalo y alinéalos
+   correctamente.
+
+No hagas commit. Al terminar dime qué archivos tocaste y cuál era
+la causa.

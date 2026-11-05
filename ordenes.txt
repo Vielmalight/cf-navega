@@ -1,0 +1,37 @@
+Contexto: este proyecto ("rdrevance-wiki") fue generado con Lovable y ya lo descargué desde GitHub. Es TanStack Start (SSR) con Vite 8, Nitro, Tailwind 4 y Bun (hay bun.lock). No usa Supabase ni variables de entorno. El sitio real es estático y vive en public/sitio/ (index.html, scripts.js, styles.css, imágenes), y src/routes/index.tsx lo muestra en un iframe. Quiero eliminar toda dependencia de Lovable y dejarlo desplegable en Vercel.
+
+FASE 1 - Diagnóstico (no cambies nada todavía)
+1. Confirma que tienes bun disponible (bun --version). Si no, avísame antes de seguir.
+2. Busca "lovable" (sin distinguir mayúsculas) en todo el repo, sin node_modules, y confirma estos puntos conocidos:
+   - package.json: devDependency @lovable.dev/vite-tanstack-config
+   - vite.config.ts: usa defineConfig de ese paquete (incluye tanstackStart, viteReact, tailwindcss, tsconfig paths, nitro con target cloudflare por defecto, inyección de VITE_* y alias @)
+   - bunfig.toml: minimumReleaseAgeExcludes con paquetes @lovable.dev
+   - bun.lock: URLs de un registro de Lovable (europe-west1-npm.pkg.dev/lovable-core-prod)
+   - src/lib/lovable-error-reporting.ts, importado y usado en src/routes/__root.tsx
+   - AGENTS.md: bloque LOVABLE:BEGIN/END
+   - README.md: texto genérico de Lovable
+3. Busca en la documentación oficial actual de TanStack Start y de Nitro cómo se despliega en Vercel (preset "vercel") y qué plugins necesito en vite.config.ts. Resúmeme el plan en pocas líneas y espera mi confirmación antes de la Fase 2.
+
+FASE 2 - Cambios
+1. Reemplaza el vite.config.ts para no depender de @lovable.dev/vite-tanstack-config. Debe incluir explícitamente, en el orden correcto: tanstackStart (conservando la opción server: { entry: "server" } porque src/server.ts es mi wrapper de errores), viteReact, tailwindcss (@tailwindcss/vite), vite-tsconfig-paths y nitro con preset de Vercel. Esas dependencias ya están en package.json salvo que falte alguna; si falta, instálala con bun add.
+2. Quita @lovable.dev/vite-tanstack-config de package.json con bun remove. NO cambies versiones de otras dependencias, ni el override de rolldown, ni la versión de vite.
+3. En bunfig.toml quita las entradas @lovable.dev de minimumReleaseAgeExcludes (déjalo en [] o elimina la línea) y conserva el resto.
+4. Borra src/lib/lovable-error-reporting.ts y en src/routes/__root.tsx quita el import de reportLovableError y el useEffect que lo llama (y el import de useEffect si queda sin uso). Conserva el resto del errorComponent tal cual.
+5. Elimina el bloque <!-- LOVABLE:BEGIN --> ... <!-- LOVABLE:END --> de AGENTS.md. Si el archivo queda vacío, déjalo con una nota breve del stack (TanStack Start + Bun + Vercel).
+6. Reescribe README.md: nombre del proyecto (Wiki Hipotecaria Credifamilia), descripción corta, cómo correrlo con bun (bun install, bun run dev, bun run build), stack (TanStack Start, React, Tailwind, Nitro) y que se despliega en Vercel. Sin menciones a Lovable.
+7. Regenera el lockfile para que ya no apunte al registro de Lovable: borra bun.lock y node_modules, ejecuta bun install, y verifica con grep que bun.lock ya no contiene "lovable". Usa solo bun, NO npm (no quiero package-lock.json).
+8. NO crees vercel.json con rewrites; TanStack Start maneja el enrutamiento en el servidor. Solo crea un vercel.json si la documentación que revisaste en la Fase 1 lo exige para este setup, y dime por qué.
+9. En package.json cambia "name" de "tanstack_start_ts" a "rdrevance-wiki". No toques los scripts, salvo que el preset de Vercel requiera ajustar el build.
+10. NO modifiques nada dentro de public/sitio/ (es el sitio del cliente), salvo que encuentres referencias a Lovable ahí (en la revisión previa no había).
+11. Verifica: bun run build debe terminar sin errores y generar la salida para Vercel (revisa que exista la carpeta .vercel/output o la que indique la documentación). Si falla, corrígelo y explícame qué cambiaste. Después ejecuta bun run dev brevemente y confirma que / carga el iframe con /sitio/index.html.
+
+Reglas:
+- NO hagas commit ni push sin preguntarme. Al final muéstrame los archivos cambiados y propón el mensaje del commit.
+- NO borres lógica de la app ni cambies el diseño.
+- NO reescribas el historial de git (sin force push, rebase ni amend).
+- Si algo es ambiguo o el build falla por algo que no entiendes, pregúntame antes de improvisar.
+
+Al final entrégame:
+- Lista de archivos modificados, creados y eliminados.
+- Confirmación de que grep -ri lovable (excluyendo node_modules) no devuelve resultados.
+- Los pasos manuales que me faltan en Vercel: importar el repo, confirmar que detecta el framework y usa bun, y deploy. Indica si hace falta configurar algún Build Command, Output Directory o variable (por lo visto, ninguna).
