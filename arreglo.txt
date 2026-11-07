@@ -1,28 +1,26 @@
-Hay un bug visual en public/sitio/index.html (la wiki):
+Hay un bug visual en los acordeones de la wiki, en la sección "Reglas especiales para independientes" (acordeones como "Prestadores técnicos o tecnólogos", "Conductores", "Rentistas de capital", etc.). Probablemente afecta a todos los acordeones del sitio.
 
-1. Texto verde en diagonal superpuesto sobre las tarjetas. Se ve
-   rotado (unos 45-60°), en color verde (el mismo del tema), y
-   atraviesa el contenido de las secciones de "Determinación de
-   ingresos" (tarjetas "90% de lo soportado", "Condición de
-   cotización", "Tope 1,5 SMMLV"). Las palabras que alcanzo a ver
-   son fragmentos de ocupaciones: "servicios profesionales",
-   "técnicos o tecnólogos", "conductores...". Parece que
-   encabezados o celdas de una tabla (probablemente la matriz de
-   ocupaciones/CIIU) se están renderizando rotados y fuera de su
-   contenedor.
+SÍNTOMA
+- Cerrado: el título del acordeón (texto grande, verde, a la izquierda) se ve bien, y a la derecha se ve el subtítulo gris (ej. "Condición de cotización") y el ícono "+".
+- Abierto: el título grande aparece girado en diagonal, flotando encima del contenido del acordeón y fuera de la barra del header. En la barra solo queda visible el subtítulo gris, centrado, y el ícono pasa a "−".
 
-   - Busca en el CSS y en el JS reglas con rotate(, writing-mode,
-     position: absolute o fixed que afecten esos textos.
-   - Identifica qué elemento los genera y por qué se escapa de su
-     tabla/contenedor.
-   - Corrígelo para que quede dentro de su sección y no se
-     superponga con nada. Si es un encabezado rotado de tabla,
-     contenlo con overflow controlado.
+COMPORTAMIENTO ESPERADO
+- Al abrir un acordeón, el título debe quedarse en su lugar, a la izquierda, con el mismo estilo que cerrado (tamaño, color, alineación).
+- La única rotación o cambio visual debe ser del ícono (+ a −), nada más.
+- El subtítulo gris debe mantener la misma posición en ambos estados.
 
-2. Los títulos de las tarjetas ("90% de lo soportado", "Condición
-   de cotización", "Tope 1,5 SMMLV") se ven desplazados hacia la
-   derecha, no alineados a la izquierda. Revísalo y alinéalos
-   correctamente.
+QUÉ HACER
+1. Localiza el componente de acordeón (Accordion, AccordionTrigger, AccordionItem o similar) y su CSS/Tailwind.
+2. Busca todo lo que aplique `transform`, `rotate`, `rotate-*`, `-rotate-*`, `origin-*` o animaciones/keyframes en estado abierto: selectores `[data-state="open"]`, `group-data-[state=open]:`, `.open`, `[aria-expanded="true"]`, y combinadores amplios como `> *`, `span` o `*`.
+3. Identifica qué regla está afectando al título. Sospecha de un selector demasiado amplio, o de una clase de rotación puesta en el contenedor del trigger en lugar de en el ícono.
+4. Corrige para que la transformación se aplique SOLO al ícono, usando una clase específica (por ejemplo `.accordion-icon`) o poniendo la clase directamente en el elemento del ícono. Quita cualquier rotate/transform del título y del contenedor.
+5. Revisa que el layout del trigger sea consistente en ambos estados: título a la izquierda, subtítulo y ícono a la derecha, sin cambios de flex, grid, position o width al abrir.
+6. Verifica que el título no use `position: absolute` ni `transform` heredado en estado abierto.
 
-No hagas commit. Al terminar dime qué archivos tocaste y cuál era
-la causa.
+RESTRICCIONES
+- No cambies el diseño, colores ni textos existentes; solo arregla este bug.
+- No rompas la animación de apertura/cierre del contenido.
+- Aplica el arreglo en el componente base para que corrija todos los acordeones del sitio, no solo los de esta sección.
+
+AL TERMINAR
+Dime qué regla causaba el problema (archivo y línea) y qué cambiaste. Después de desplegar en Vercel, voy a verificar abriendo varios acordeones.

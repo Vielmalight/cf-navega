@@ -1,29 +1,25 @@
-# Welcome to your Lovable project
+# Wiki Hipotecaria Credifamilia
 
-This project was built with [Lovable](https://lovable.dev).
+Guía práctica de crédito hipotecario Credifamilia: requisitos, documentos y asesoría para comprar vivienda. El sitio real es estático y vive en `public/sitio/`; `src/routes/index.tsx` lo muestra a pantalla completa.
 
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Desarrollo
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
 ```
 
-## Built with
+## Build
+
+```sh
+bun run build
+```
+
+## Stack
 
 - TanStack Start
-- TypeScript
 - React
 - Tailwind CSS
+- Nitro
+
+Despliegue en Vercel.
