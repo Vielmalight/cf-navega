@@ -1,26 +1,12 @@
-Hay un bug visual en los acordeones de la wiki, en la sección "Reglas especiales para independientes" (acordeones como "Prestadores técnicos o tecnólogos", "Conductores", "Rentistas de capital", etc.). Probablemente afecta a todos los acordeones del sitio.
+En la sección del glosario (tarjetas de términos con "+" que se expanden como acordeón), hay un bug visual: cuando abro una tarjeta, las otras tarjetas de la misma fila también se agrandan y quedan con espacio vacío en blanco.
 
-SÍNTOMA
-- Cerrado: el título del acordeón (texto grande, verde, a la izquierda) se ve bien, y a la derecha se ve el subtítulo gris (ej. "Condición de cotización") y el ícono "+".
-- Abierto: el título grande aparece girado en diagonal, flotando encima del contenido del acordeón y fuera de la barra del header. En la barra solo queda visible el subtítulo gris, centrado, y el ícono pasa a "−".
+Causa: el grid usa por defecto `align-items: stretch`, así que todas las tarjetas de una fila se igualan a la altura de la más alta.
 
-COMPORTAMIENTO ESPERADO
-- Al abrir un acordeón, el título debe quedarse en su lugar, a la izquierda, con el mismo estilo que cerrado (tamaño, color, alineación).
-- La única rotación o cambio visual debe ser del ícono (+ a −), nada más.
-- El subtítulo gris debe mantener la misma posición en ambos estados.
+Lo que necesito:
+1. Ubica el contenedor grid del glosario (el que renderiza las 55 entradas en 3 columnas) y agrega `align-items: start` (en Tailwind: `items-start`).
+2. Verifica que la tarjeta no tenga `h-full` ni una altura fija que la fuerce a estirarse. Si la tiene, quítala.
+3. Resultado esperado: al abrir una tarjeta, solo esa crece con su definición; las vecinas mantienen su altura compacta original.
+4. No cambies nada más: ni colores, ni textos, ni la lógica de abrir/cerrar, ni el filtrado por categorías, ni el buscador.
+5. Comprueba que se vea bien en móvil (1 columna) y en escritorio (3 columnas).
 
-QUÉ HACER
-1. Localiza el componente de acordeón (Accordion, AccordionTrigger, AccordionItem o similar) y su CSS/Tailwind.
-2. Busca todo lo que aplique `transform`, `rotate`, `rotate-*`, `-rotate-*`, `origin-*` o animaciones/keyframes en estado abierto: selectores `[data-state="open"]`, `group-data-[state=open]:`, `.open`, `[aria-expanded="true"]`, y combinadores amplios como `> *`, `span` o `*`.
-3. Identifica qué regla está afectando al título. Sospecha de un selector demasiado amplio, o de una clase de rotación puesta en el contenedor del trigger en lugar de en el ícono.
-4. Corrige para que la transformación se aplique SOLO al ícono, usando una clase específica (por ejemplo `.accordion-icon`) o poniendo la clase directamente en el elemento del ícono. Quita cualquier rotate/transform del título y del contenedor.
-5. Revisa que el layout del trigger sea consistente en ambos estados: título a la izquierda, subtítulo y ícono a la derecha, sin cambios de flex, grid, position o width al abrir.
-6. Verifica que el título no use `position: absolute` ni `transform` heredado en estado abierto.
-
-RESTRICCIONES
-- No cambies el diseño, colores ni textos existentes; solo arregla este bug.
-- No rompas la animación de apertura/cierre del contenido.
-- Aplica el arreglo en el componente base para que corrija todos los acordeones del sitio, no solo los de esta sección.
-
-AL TERMINAR
-Dime qué regla causaba el problema (archivo y línea) y qué cambiaste. Después de desplegar en Vercel, voy a verificar abriendo varios acordeones.
+Al terminar, dime qué archivo y qué líneas modificaste.
