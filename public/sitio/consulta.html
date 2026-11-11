@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta | Wiki Hipotecaria Credifamilia</title>
+  <meta name="description" content="Buscador global, glosario de términos y preguntas frecuentes de la Wiki Hipotecaria.">
+
+  <link rel="icon" href="img/logo-credifamilia.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sitio.css">
+</head>
+
+<body data-page="consulta">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="index.html" aria-label="Wiki Hipotecaria Credifamilia, inicio"><img src="img/logo-credifamilia.png" alt="Credifamilia - Para todos." class="credifamilia-logo credifamilia-logo--full"><span><strong>Wiki</strong> Hipotecaria<small>Canal PropTech</small></span></a><nav class="module-nav" aria-label="Menú principal"><a class="module-link" href="index.html">Inicio</a><a class="module-link" href="otorgamiento.html">Otorgamiento</a><div class="nav-dropdown"><button type="button" class="module-link nav-toggle" aria-expanded="false" aria-haspopup="true">Productos<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="nav-menu" hidden><span class="nav-menu-title">Productos</span><a href="productos.html">Productos de vivienda</a><a href="vivienda-nueva.html">Vivienda nueva</a><a href="vivienda-vip.html">Vivienda VIP y VIPA</a><a href="vivienda-usada.html">Vivienda usada</a><a href="productos-especiales.html">Productos especiales</a></div></div><a class="module-link" href="documentacion.html">Documentación</a><div class="nav-dropdown"><button type="button" class="module-link nav-toggle" aria-expanded="false" aria-haspopup="true">Aprobaciones<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="nav-menu" hidden><span class="nav-menu-title">Aprobaciones</span><a href="instancias.html">Instancias de aprobación</a><a href="excepciones.html">Política de excepciones</a></div></div><a class="module-link is-active" href="consulta.html" aria-current="page">Consulta</a></nav><div class="header-actions"><button type="button" class="search-trigger" id="openSearch" aria-label="Buscar en toda la wiki (Ctrl+K)" title="Buscar en toda la wiki (Ctrl+K)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21"></path></svg><span>Buscar</span><kbd>Ctrl K</kbd></button><button type="button" class="menu-btn" id="menuBtn" aria-label="Abrir menú y navegación de la página" aria-controls="siteNav" aria-expanded="false">☰</button></div></div><div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div></header>
+
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <aside class="site-nav" id="siteNav" aria-label="Menú y contenido de la página">
+    <div class="site-nav-head"><strong>En esta página</strong><button type="button" id="navClose" aria-label="Cerrar menú">×</button></div>
+    <div class="nav-modules"><span class="nav-menu-title">Módulos</span><a href="otorgamiento.html">Otorgamiento</a><a href="productos.html">Productos de vivienda</a><a href="documentacion.html">Documentación</a><a href="vivienda-nueva.html">Vivienda nueva</a><a href="vivienda-vip.html">Vivienda VIP y VIPA</a><a href="vivienda-usada.html">Vivienda usada</a><a href="productos-especiales.html">Productos especiales</a><a href="instancias.html">Instancias de aprobación</a><a href="excepciones.html">Política de excepciones</a><a href="consulta.html" class="is-active">Consulta</a></div>
+    <nav><a class="nav-top" href="#buscador">Buscador</a><a class="nav-top" href="#glosario">Glosario</a><a class="nav-top" href="#faq">Preguntas frecuentes</a></nav>
+  </aside>
+
+  <main id="contenido">
+    <nav class="breadcrumb" aria-label="Ruta de navegación"><a href="index.html">Inicio</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Consulta</span></nav>
+
+<section
+      class="section"
+      id="buscador"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <span class="eyebrow">
+            05 · HERRAMIENTAS DE CONSULTA
+          </span>
+
+          <h2>
+            Buscador de la política
+          </h2>
+
+        </div>
+
+        <p>
+          Busca conceptos, perfiles, requisitos y condiciones.
+        </p>
+
+      </div>
+
+
+      <div class="global-search">
+
+        <span>⌕</span>
+
+        <input
+          type="search"
+          id="globalSearch"
+          placeholder="Ejemplo: Acierta, RCI, LTV, parqueadero, PPT..."
+        >
+
+      </div>
+
+
+      <div
+        class="search-results"
+        id="searchResults"
+        aria-live="polite"
+      >
+
+        <div class="search-hint">
+
+          <h3>
+            Prueba una búsqueda
+          </h3>
+
+          <p>
+            Puedes buscar términos como:
+          </p>
+
+          <div class="search-tags">
+
+            <button data-search-term="Acierta">
+              Acierta
+            </button>
+
+            <button data-search-term="RCI">
+              RCI
+            </button>
+
+            <button data-search-term="LTV">
+              LTV
+            </button>
+
+            <button data-search-term="Antigüedad">
+              Antigüedad
+            </button>
+
+            <button data-search-term="Independiente">
+              Independiente
+            </button>
+
+            <button data-search-term="Parqueadero">
+              Parqueadero
+            </button>
+
+            <button data-search-term="Vetustez">
+              Vetustez
+            </button>
+
+            <button data-search-term="Excepción">
+              Excepción
+            </button>
+
+            <button data-search-term="Comité de Garantías">
+              Comité de Garantías
+            </button>
+
+            <button data-search-term="Pagaré">
+              Pagaré
+            </button>
+
+            <button data-search-term="Desistimiento">
+              Desistimiento
+            </button>
+
+            <button data-search-term="PPT">
+              PPT
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+<section
+      class="section alt"
+      id="glosario"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <span class="eyebrow">
+            05 · HERRAMIENTAS DE CONSULTA
+          </span>
+
+          <h2>
+            Glosario CF Navega
+          </h2>
+
+          <p class="section-kicker">
+            Conceptos clave de las políticas de otorgamiento
+          </p>
+
+        </div>
+
+        <span class="context-chip">Consulta interna</span>
+
+      </div>
+
+      <div class="glossary-toolbar">
+
+        <div class="search-box glossary-search">
+
+          <span>⌕</span>
+
+          <input
+            id="glossarySearch"
+            type="search"
+            placeholder="Buscar término o significado..."
+          >
+
+        </div>
+
+        <span class="faq-total" id="glossaryTotal">55 entradas · 45 términos + 10 siglas</span>
+
+      </div>
+
+      <div class="chip-row" id="glossaryFilters" aria-label="Filtrar glosario por categoría">
+
+        <button class="chip-btn active" type="button" data-glossary-category="todos">Todos</button>
+        <button class="chip-btn" type="button" data-glossary-category="originacion">Originación</button>
+        <button class="chip-btn" type="button" data-glossary-category="financieros">Financieros</button>
+        <button class="chip-btn" type="button" data-glossary-category="productos">Productos</button>
+        <button class="chip-btn" type="button" data-glossary-category="juridicos">Jurídicos</button>
+        <button class="chip-btn" type="button" data-glossary-category="aprobaciones">Aprobaciones</button>
+        <button class="chip-btn" type="button" data-glossary-category="siglas">Siglas</button>
+
+      </div>
+
+      <p class="result-count" id="glossaryResultCount">55 entradas</p>
+
+      <div class="glossary-grid" id="glossaryGrid">
+
+        <details class="glossary-item" data-category="originacion" data-term="Originación ">
+          <summary>
+            <span class="glossary-term">Originación</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Etapa previa al otorgamiento del crédito en la que se identifica el perfil del cliente, se evalúan sus características y se determina su compatibilidad con el mercado objetivo y las políticas de crédito.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Mercado objetivo ">
+          <summary>
+            <span class="glossary-term">Mercado objetivo</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Segmento de personas naturales que cumplen las características definidas por Credifamilia para acceder a sus productos financieros.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Mercado excluido ">
+          <summary>
+            <span class="glossary-term">Mercado excluido</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Conjunto de personas o actividades económicas que, por las condiciones establecidas en la política, no pueden ser atendidas ordinariamente por Credifamilia.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Perfil de riesgo ">
+          <summary>
+            <span class="glossary-term">Perfil de riesgo</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Caracterización del solicitante a partir de variables cualitativas y cuantitativas que permiten evaluar su exposición al riesgo crediticio.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Acierta puntaje score scoring">
+          <summary>
+            <span class="glossary-term">Acierta</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Puntaje de evaluación crediticia utilizado para analizar al solicitante. Sus puntos mínimos de referencia dependen del perfil y de las condiciones definidas en la política.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Scoring crediticio ">
+          <summary>
+            <span class="glossary-term">Scoring crediticio</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Herramienta de evaluación que utiliza variables del solicitante para apoyar la decisión de crédito. Su resultado no representa por sí solo una aprobación.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Modelo de otorgamiento interno ">
+          <summary>
+            <span class="glossary-term">Modelo de otorgamiento interno</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Modelo utilizado por Credifamilia para evaluar el riesgo de una operación y asignar una calificación interna, como BB, BB+ o CC.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Capacidad de pago ">
+          <summary>
+            <span class="glossary-term">Capacidad de pago</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Capacidad económica del solicitante para asumir las obligaciones financieras, considerando sus ingresos, gastos familiares y compromisos existentes.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Solvencia patrimonial ">
+          <summary>
+            <span class="glossary-term">Solvencia patrimonial</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Condición económica relacionada con el respaldo patrimonial del solicitante y su situación de activos y pasivos.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="originacion" data-term="Prestador de servicios ">
+          <summary>
+            <span class="glossary-term">Prestador de servicios</span>
+            <span class="glossary-tag">Originación</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Persona profesional, técnica o tecnóloga que ofrece sus servicios a una o varias empresas, sin ocupar un cargo dentro de su estructura organizacional, y que asume el pago de su seguridad social.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="RCI – Relación Cuota Ingreso rci relacion cuota ingreso">
+          <summary>
+            <span class="glossary-term">RCI – Relación Cuota Ingreso</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Indicador que expresa la participación de la cuota del crédito frente a los ingresos del solicitante. La política establece límites según el producto y el perfil.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="LTV – Loan to Value ltv loan to value financiacion">
+          <summary>
+            <span class="glossary-term">LTV – Loan to Value</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Porcentaje de financiación respecto al valor del inmueble. Permite establecer qué proporción del valor de la vivienda se financia mediante el crédito.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="Endeudamiento financiero ">
+          <summary>
+            <span class="glossary-term">Endeudamiento financiero</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Suma de las cuotas mensuales de préstamos con entidades financieras, sector asegurador, sector solidario e instrumentos financieros del sector real.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="Endeudamiento financiero más cuota del préstamo ">
+          <summary>
+            <span class="glossary-term">Endeudamiento financiero más cuota del préstamo</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Indicador que incorpora las obligaciones financieras existentes y la cuota del crédito solicitado para evaluar el nivel de compromisos del cliente.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="Relación pasivos/activos ">
+          <summary>
+            <span class="glossary-term">Relación pasivos/activos</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Indicador que compara las obligaciones o pasivos del solicitante frente al valor de sus activos. La política lo contempla entre los requisitos de excepción.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="SMMLV smmlv salario minimo mensual legal vigente">
+          <summary>
+            <span class="glossary-term">SMMLV</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Salario Mínimo Mensual Legal Vigente. Unidad de referencia utilizada para expresar montos, ingresos y atribuciones de crédito.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="financieros" data-term="UVR uvr unidad de valor real">
+          <summary>
+            <span class="glossary-term">UVR</span>
+            <span class="glossary-tag">Financieros</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Unidad de Valor Real. Unidad de cuenta utilizada en créditos de vivienda para expresar valores y modalidades de financiación.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="VIS – Vivienda de Interés Social vis vivienda de interes social">
+          <summary>
+            <span class="glossary-term">VIS – Vivienda de Interés Social</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Categoría de vivienda que se identifica como VIS dentro de las condiciones y clasificaciones aplicables al crédito de vivienda.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="VIP – Vivienda de Interés Prioritario vip vivienda de interes prioritario">
+          <summary>
+            <span class="glossary-term">VIP – Vivienda de Interés Prioritario</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Categoría de vivienda de interés prioritario, con condiciones específicas de financiación y evaluación establecidas en la política.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="VIPA vipa vivienda interes prioritario">
+          <summary>
+            <span class="glossary-term">VIPA</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Modalidad de vivienda identificada como VIPA en la política, con condiciones particulares de otorgamiento y sin posibilidad de aplicar excepciones.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="NO VIS no vis vivienda no interes social">
+          <summary>
+            <span class="glossary-term">NO VIS</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Vivienda que no se encuentra clasificada como Vivienda de Interés Social.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="Mejoramiento de vivienda ">
+          <summary>
+            <span class="glossary-term">Mejoramiento de vivienda</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Producto destinado a financiar mejoras en un inmueble, bajo las condiciones específicas establecidas para clientes nuevos y actuales.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="Leasing habitacional ">
+          <summary>
+            <span class="glossary-term">Leasing habitacional</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Contrato mediante el cual Credifamilia entrega la tenencia de un inmueble para su uso y goce durante un plazo, a cambio de pagos periódicos, con una opción de adquisición al finalizar el contrato.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="PPT – Permiso de Protección Temporal ppt permiso proteccion temporal">
+          <summary>
+            <span class="glossary-term">PPT – Permiso de Protección Temporal</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Documento de identificación y permanencia temporal contemplado para extranjeros. La política establece condiciones específicas de edad, puntaje y vigencia del permiso para acceder al crédito.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="productos" data-term="Rentista de capital ">
+          <summary>
+            <span class="glossary-term">Rentista de capital</span>
+            <span class="glossary-tag">Productos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Persona que obtiene ingresos provenientes de inversiones, arrendamientos u otras fuentes de capital, los cuales deben acreditarse conforme a los soportes exigidos.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Radicación ">
+          <summary>
+            <span class="glossary-term">Radicación</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Presentación formal de una solicitud de crédito con la información y documentación requerida para iniciar su evaluación.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Reproceso ">
+          <summary>
+            <span class="glossary-term">Reproceso</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Nueva gestión o revisión de una solicitud de crédito que requiere actualizar o validar información y documentos conforme a las condiciones vigentes.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Carta de aprobación definitiva ">
+          <summary>
+            <span class="glossary-term">Carta de aprobación definitiva</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Comunicación formal de aprobación del crédito, sujeta al cumplimiento de las validaciones y condiciones necesarias para su expedición.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Vigencia documental ">
+          <summary>
+            <span class="glossary-term">Vigencia documental</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Periodo durante el cual un documento se considera válido para ser utilizado en una determinada etapa del proceso crediticio.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Certificado de Tradición y Libertad ctl certificado tradicion libertad">
+          <summary>
+            <span class="glossary-term">Certificado de Tradición y Libertad</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Documento que permite consultar la situación jurídica de un inmueble, sus propietarios, antecedentes registrales, gravámenes y limitaciones.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Avalúo ">
+          <summary>
+            <span class="glossary-term">Avalúo</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Valoración técnica del inmueble realizada para establecer su valor y aportar elementos para la evaluación de la garantía.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Vetustez ">
+          <summary>
+            <span class="glossary-term">Vetustez</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Antigüedad del inmueble, considerada dentro de la evaluación de las características y calidad de la garantía.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Garantía hipotecaria ">
+          <summary>
+            <span class="glossary-term">Garantía hipotecaria</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Respaldo constituido sobre un inmueble para garantizar el cumplimiento de una obligación crediticia.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Afectación a vivienda familiar ">
+          <summary>
+            <span class="glossary-term">Afectación a vivienda familiar</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Figura jurídica que protege el inmueble destinado a habitación de la familia y establece condiciones para su enajenación o gravamen.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Patrimonio de familia inembargable ">
+          <summary>
+            <span class="glossary-term">Patrimonio de familia inembargable</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Figura jurídica que protege el patrimonio familiar y establece restricciones sobre el embargo, hipoteca, gravamen o disposición del inmueble, conforme a la ley.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Paz y salvo ">
+          <summary>
+            <span class="glossary-term">Paz y salvo</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Constancia que acredita que una obligación se encuentra cancelada o que no presenta saldos pendientes con la entidad correspondiente.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="juridicos" data-term="Desistimiento ">
+          <summary>
+            <span class="glossary-term">Desistimiento</span>
+            <span class="glossary-tag">Jurídicos</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Cierre de una solicitud de crédito cuando se cumplen las condiciones previstas en la política para dar por terminado el proceso.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Restricción vigente ">
+          <summary>
+            <span class="glossary-term">Restricción vigente</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Condición de obligatorio cumplimiento que limita o impide la colocación de créditos para determinados perfiles, puntajes, ubicaciones o situaciones.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Excepción de crédito ">
+          <summary>
+            <span class="glossary-term">Excepción de crédito</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Autorización especial para una operación que presenta un incumplimiento puntual de un concepto susceptible de excepción, bajo las condiciones y facultades establecidas en la política.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Atribuciones de crédito ">
+          <summary>
+            <span class="glossary-term">Atribuciones de crédito</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Facultades asignadas a los diferentes órganos y cargos de la entidad para aprobar operaciones de crédito según los montos establecidos.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Comité de Garantías ">
+          <summary>
+            <span class="glossary-term">Comité de Garantías</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Instancia encargada de evaluar la calidad de las garantías en créditos de vivienda usada, en los casos definidos por la política.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Deudor solidario ">
+          <summary>
+            <span class="glossary-term">Deudor solidario</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Persona que participa en la obligación crediticia y debe cumplir los mismos requisitos exigidos al deudor principal.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Aportante de ingresos ">
+          <summary>
+            <span class="glossary-term">Aportante de ingresos</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Solicitante cuyos ingresos se incorporan en la evaluación financiera de la operación, siempre que cumpla las condiciones de participación establecidas.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="PEP – Persona Expuesta Políticamente pep persona expuesta politicamente">
+          <summary>
+            <span class="glossary-term">PEP – Persona Expuesta Políticamente</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Persona que, por su condición o vínculo con funciones públicas relevantes, se encuentra sujeta a consideraciones especiales de evaluación y cumplimiento.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="aprobaciones" data-term="Oficial de Cumplimiento ">
+          <summary>
+            <span class="glossary-term">Oficial de Cumplimiento</span>
+            <span class="glossary-tag">Aprobaciones</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Responsable de analizar las situaciones relacionadas con el cumplimiento de las políticas y los casos de mercado excluido que pueden ser objeto de evaluación excepcional.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="FNG fng fondo nacional garantias">
+          <summary>
+            <span class="glossary-term">FNG</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Fondo Nacional de Garantías.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="SFC sfc superintendencia financiera colombia">
+          <summary>
+            <span class="glossary-term">SFC</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Superintendencia Financiera de Colombia.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="GAFI gafi grupo accion financiera internacional">
+          <summary>
+            <span class="glossary-term">GAFI</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Grupo de Acción Financiera Internacional.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="OFAC ofac oficina control activos extranjeros">
+          <summary>
+            <span class="glossary-term">OFAC</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Oficina de Control de Activos Extranjeros de Estados Unidos.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="Fosyga fosyga pila seguridad social">
+          <summary>
+            <span class="glossary-term">Fosyga</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Referencia utilizada en la política para validar información relacionada con afiliación y cotizaciones a seguridad social.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="RUT rut registro unico tributario">
+          <summary>
+            <span class="glossary-term">RUT</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Registro Único Tributario.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="UVT uvt unidad valor tributario">
+          <summary>
+            <span class="glossary-term">UVT</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Unidad de Valor Tributario.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="EE. FF. ee ff estados financieros">
+          <summary>
+            <span class="glossary-term">EE. FF.</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Estados financieros.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="ITP itp incapacidad total permanente">
+          <summary>
+            <span class="glossary-term">ITP</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Incapacidad total y permanente.</p>
+          </div>
+        </details>
+
+        <details class="glossary-item" data-category="siglas" data-term="AMIT amit actos mal intencionados terceros">
+          <summary>
+            <span class="glossary-term">AMIT</span>
+            <span class="glossary-tag">Siglas</span>
+            <span class="glossary-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="glossary-def">
+            <p>Actos mal intencionados de terceros.</p>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="faq-empty" id="glossaryEmpty" hidden>
+        No encontramos términos con esos filtros. Prueba con otra palabra.
+      </div>
+
+      <p class="faq-foot">CF Navega · El glosario explica conceptos; las condiciones se consultan en el Anexo 6-A.</p>
+
+    </section>
+
+<section
+      class="section alt"
+      id="faq"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <span class="eyebrow">
+            05 · HERRAMIENTAS DE CONSULTA
+          </span>
+
+          <h2>
+            Centro de ayuda
+          </h2>
+
+          <p class="section-kicker">
+            Preguntas frecuentes · CF Navega
+          </p>
+
+        </div>
+
+        <p>
+          Respuestas rápidas para situaciones habituales del proceso de otorgamiento.
+        </p>
+
+      </div>
+
+      <div class="faq-toolbar">
+
+        <div class="search-box faq-search">
+
+          <span>⌕</span>
+
+          <input
+            id="faqSearch"
+            type="search"
+            placeholder="Buscar una duda..."
+          >
+
+        </div>
+
+        <span class="faq-total" id="faqTotal">20 respuestas</span>
+
+      </div>
+
+      <div class="chip-row" id="faqFilters" aria-label="Filtrar preguntas por categoría">
+
+        <button class="chip-btn active" type="button" data-faq-category="todas">Todas</button>
+        <button class="chip-btn" type="button" data-faq-category="perfil">Perfil y excepciones</button>
+        <button class="chip-btn" type="button" data-faq-category="capacidad">Capacidad de pago</button>
+        <button class="chip-btn" type="button" data-faq-category="documentacion">Documentación y radicación</button>
+        <button class="chip-btn" type="button" data-faq-category="productos">Productos</button>
+        <button class="chip-btn" type="button" data-faq-category="aprobacion">Aprobación</button>
+
+      </div>
+
+      <p class="result-count" id="faqResultCount">20 preguntas encontradas</p>
+
+      <div class="faq-list" id="faqList">
+
+        <details class="faq-item" data-category="perfil" data-search="¿Qué sucede si el cliente cambia de empleo durante el proceso de crédito? El cambio laboral puede afectar el cumplimiento de las políticas de antigüedad y continuidad. En determinados casos, se puede solicitar un visto bueno de Riesgo si existe una mejora considerable en los ingresos y en el tipo de contrato, siempre que se cumplan las condiciones establecidas para la modalidad de vinculación laboral.">
+          <summary>
+            <span class="faq-q">¿Qué sucede si el cliente cambia de empleo durante el proceso de crédito?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>El cambio laboral puede afectar el cumplimiento de las políticas de antigüedad y continuidad. En determinados casos, se puede solicitar un visto bueno de Riesgo si existe una mejora considerable en los ingresos y en el tipo de contrato, siempre que se cumplan las condiciones establecidas para la modalidad de vinculación laboral.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="perfil" data-search="¿Se puede sumar el ingreso de una persona que no es familiar del solicitante? La conformación de los solicitantes y la procedencia de los ingresos deben ajustarse a las políticas de número de solicitantes y perfil. No basta con que la persona tenga ingresos: debe cumplir las condiciones de vinculación admitidas por la política.">
+          <summary>
+            <span class="faq-q">¿Se puede sumar el ingreso de una persona que no es familiar del solicitante?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>La conformación de los solicitantes y la procedencia de los ingresos deben ajustarse a las políticas de número de solicitantes y perfil. No basta con que la persona tenga ingresos: debe cumplir las condiciones de vinculación admitidas por la política.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="perfil" data-search="¿Cuándo se considera que existe continuidad laboral si el cliente ha tenido varios empleos? Se debe validar la continuidad entre empleos, el tipo de vinculación y los periodos sin laborar. La continuidad debe estar soportada y verificarse mediante los mecanismos establecidos, incluyendo Fosyga cuando corresponda.">
+          <summary>
+            <span class="faq-q">¿Cómo se valida la continuidad laboral si el cliente ha tenido varios empleos?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe validar la continuidad entre empleos, el tipo de vinculación y los periodos sin laborar. La continuidad debe estar soportada y verificarse mediante los mecanismos establecidos, incluyendo Fosyga cuando corresponda.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="perfil" data-search="¿Un contrato por prestación de servicios permite acreditar continuidad laboral? No necesariamente. La continuidad mediante prestación de servicios no se acepta cuando no es posible demostrar las cotizaciones y la formalidad laboral requeridas por la política.">
+          <summary>
+            <span class="faq-q">¿Un contrato por prestación de servicios permite acreditar continuidad laboral?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No necesariamente. La continuidad mediante prestación de servicios no se acepta cuando no es posible demostrar las cotizaciones y la formalidad laboral requeridas por la política.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="capacidad" data-search="¿Qué pasa si el cliente cumple con los ingresos, pero no con el nivel de endeudamiento permitido? El cumplimiento de los ingresos mínimos no garantiza la aprobación. La operación debe cumplir integralmente los criterios de capacidad de pago, endeudamiento y demás políticas aplicables. Si la situación corresponde a un concepto susceptible de excepción, debe evaluarse bajo el procedimiento establecido.">
+          <summary>
+            <span class="faq-q">¿Qué pasa si cumple ingresos, pero no el nivel de endeudamiento?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>El cumplimiento de los ingresos mínimos no garantiza la aprobación. La operación debe cumplir integralmente los criterios de capacidad de pago, endeudamiento y demás políticas aplicables. Si la situación corresponde a un concepto susceptible de excepción, debe evaluarse bajo el procedimiento establecido.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="capacidad" data-search="¿Se pueden considerar ingresos adicionales que no aparecen en la certificación laboral? Solo cuando se encuentren debidamente soportados y sean admisibles conforme a las políticas de determinación de ingresos. No se deben incorporar ingresos únicamente por manifestación del cliente.">
+          <summary>
+            <span class="faq-q">¿Se pueden considerar ingresos adicionales que no aparecen en la certificación laboral?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Solo cuando se encuentren debidamente soportados y sean admisibles conforme a las políticas de determinación de ingresos. No se deben incorporar ingresos únicamente por manifestación del cliente.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="capacidad" data-search="¿Qué diferencia existe entre una operación que cumple política y una operación por excepción? Una operación cumple política cuando satisface los requisitos establecidos para el producto y el perfil del solicitante. Una operación por excepción presenta un incumplimiento puntual de un criterio susceptible de autorización especial y requiere justificación, identificación del concepto y seguimiento correspondiente.">
+          <summary>
+            <span class="faq-q">¿Cuál es la diferencia entre cumplir política y solicitar una excepción?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Una operación cumple política cuando satisface los requisitos establecidos para el producto y el perfil del solicitante. Una operación por excepción presenta un incumplimiento puntual de un criterio susceptible de autorización especial y requiere justificación, identificación del concepto y seguimiento correspondiente.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="capacidad" data-search="¿Se puede solicitar más de una excepción en una misma operación? La política establece que únicamente se permite un concepto de excepción por operación. Este debe registrarse en el sistema, identificar al solicitante y contar con una justificación documentada.">
+          <summary>
+            <span class="faq-q">¿Se puede solicitar más de una excepción en una misma operación?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>La política establece que únicamente se permite un concepto de excepción por operación. Este debe registrarse en el sistema, identificar al solicitante y contar con una justificación documentada.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="documentacion" data-search="¿Qué debo hacer si un documento se encuentra vencido al momento de radicar? Se debe verificar la vigencia exigida para el tipo de documento y la etapa del proceso. Si el documento no cumple, debe solicitarse su actualización antes de continuar, salvo que exista una condición expresamente autorizada por la política.">
+          <summary>
+            <span class="faq-q">¿Qué debo hacer si un documento se encuentra vencido al momento de radicar?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe verificar la vigencia exigida para el tipo de documento y la etapa del proceso. Si el documento no cumple, debe solicitarse su actualización antes de continuar, salvo que exista una condición expresamente autorizada por la política.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="documentacion" data-search="¿Qué ocurre si el cliente cambia las condiciones de su solicitud después de la radicación? Se debe revisar si el cambio afecta las condiciones inicialmente evaluadas, los documentos aportados o el cumplimiento de las políticas. Si modifica elementos determinantes de la operación, puede requerirse una nueva validación por parte de Crédito.">
+          <summary>
+            <span class="faq-q">¿Qué ocurre si el cliente cambia las condiciones de su solicitud después de la radicación?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe revisar si el cambio afecta las condiciones inicialmente evaluadas, los documentos aportados o el cumplimiento de las políticas. Si modifica elementos determinantes de la operación, puede requerirse una nueva validación por parte de Crédito.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="documentacion" data-search="¿Una aprobación de crédito significa que ya se puede desembolsar? No. La aprobación no equivale al desembolso. La operación debe completar las etapas posteriores, incluida la legalización, la formalización de garantías cuando aplique y las validaciones requeridas para el desembolso.">
+          <summary>
+            <span class="faq-q">¿Una aprobación de crédito significa que ya se puede desembolsar?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. La aprobación no equivale al desembolso. La operación debe completar las etapas posteriores, incluida la legalización, la formalización de garantías cuando aplique y las validaciones requeridas para el desembolso.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="documentacion" data-search="¿Qué debo hacer cuando el cliente cumple los requisitos, pero falta un documento para completar la solicitud? Se debe identificar el documento pendiente y verificar si corresponde a un requisito mínimo de radicación o a una etapa posterior. No se debe avanzar omitiendo requisitos obligatorios de la etapa correspondiente.">
+          <summary>
+            <span class="faq-q">¿Qué hago si falta un documento para completar la solicitud?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe identificar el documento pendiente y verificar si corresponde a un requisito mínimo de radicación o a una etapa posterior. No se debe avanzar omitiendo requisitos obligatorios de la etapa correspondiente.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="productos" data-search="¿Qué diferencias debo tener presentes al evaluar vivienda nueva y vivienda usada? Cada modalidad tiene condiciones específicas de aceptación, determinación de ingresos, características del inmueble y garantías. No se deben trasladar automáticamente las condiciones de vivienda nueva a vivienda usada ni viceversa.">
+          <summary>
+            <span class="faq-q">¿Qué diferencias debo tener presentes al evaluar vivienda nueva y vivienda usada?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Cada modalidad tiene condiciones específicas de aceptación, determinación de ingresos, características del inmueble y garantías. No se deben trasladar automáticamente las condiciones de vivienda nueva a vivienda usada ni viceversa.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="productos" data-search="¿Qué sucede si el inmueble usado supera la antigüedad permitida o presenta condiciones especiales? Se debe verificar si la condición activa una evaluación especial o la intervención del Comité de Garantías. En los casos previstos por la política, la calidad de la garantía debe evaluarse antes de continuar con la operación.">
+          <summary>
+            <span class="faq-q">¿Qué sucede si el inmueble usado supera la antigüedad permitida o presenta condiciones especiales?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe verificar si la condición activa una evaluación especial o la intervención del Comité de Garantías. En los casos previstos por la política, la calidad de la garantía debe evaluarse antes de continuar con la operación.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="productos" data-search="¿Cuándo se debe convocar al Comité de Garantías? Cuando la operación se encuentre dentro de los supuestos establecidos en la política, entre ellos los relacionados con montos superiores a 350 SMMLV, inmuebles con antigüedad superior a 35 años y determinadas excepciones de estrato o parqueadero para vivienda usada.">
+          <summary>
+            <span class="faq-q">¿Cuándo se debe convocar al Comité de Garantías?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Cuando la operación se encuentre dentro de los supuestos establecidos en la política, entre ellos los relacionados con montos superiores a 350 SMMLV, inmuebles con antigüedad superior a 35 años y determinadas excepciones de estrato o parqueadero para vivienda usada.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="productos" data-search="¿Qué debo validar cuando el crédito corresponde a mejoramiento de vivienda o acabados VIS? Se deben identificar correctamente el producto y su modalidad, verificar las condiciones de elegibilidad del solicitante y aplicar los requisitos específicos de destino, documentación y otorgamiento correspondientes. Las políticas de un producto no deben asumirse como equivalentes a las de otro.">
+          <summary>
+            <span class="faq-q">¿Qué debo validar cuando el crédito corresponde a mejoramiento de vivienda o acabados VIS?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se deben identificar correctamente el producto y su modalidad, verificar las condiciones de elegibilidad del solicitante y aplicar los requisitos específicos de destino, documentación y otorgamiento correspondientes. Las políticas de un producto no deben asumirse como equivalentes a las de otro.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="aprobacion" data-search="¿Quién tiene la facultad para aprobar una operación según su monto? La instancia depende del monto expresado en SMMLV. La atribución puede corresponder a la Coordinación de Crédito y analistas, escalar a la Vicepresidencia de Operaciones, a Presidencia o a la Junta Directiva, según los rangos establecidos.">
+          <summary>
+            <span class="faq-q">¿Quién tiene la facultad para aprobar una operación según su monto?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>La instancia depende del monto expresado en SMMLV. La atribución puede corresponder a la Coordinación de Crédito y analistas, escalar a la Vicepresidencia de Operaciones, a Presidencia o a la Junta Directiva, según los rangos establecidos.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="aprobacion" data-search="¿Una instancia de aprobación puede autorizar cualquier incumplimiento de política? No. Las facultades de aprobación no implican que todos los incumplimientos sean autorizables. Se debe verificar que la condición sea susceptible de excepción y que se cumpla el procedimiento correspondiente.">
+          <summary>
+            <span class="faq-q">¿Una instancia de aprobación puede autorizar cualquier incumplimiento de política?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. Las facultades de aprobación no implican que todos los incumplimientos sean autorizables. Se debe verificar que la condición sea susceptible de excepción y que se cumpla el procedimiento correspondiente.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="aprobacion" data-search="¿Qué operaciones requieren una aprobación especial por el vínculo del solicitante con la compañía? Las operaciones que involucren accionistas con participación igual o superior al 5 %, administradores o familiares dentro de los grados establecidos por la política requieren el tratamiento especial previsto, incluida la aprobación unánime de la Junta Directiva.">
+          <summary>
+            <span class="faq-q">¿Qué operaciones requieren una aprobación especial por el vínculo del solicitante con la compañía?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Las operaciones que involucren accionistas con participación igual o superior al 5 %, administradores o familiares dentro de los grados establecidos por la política requieren el tratamiento especial previsto, incluida la aprobación unánime de la Junta Directiva.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" data-category="aprobacion" data-search="¿Qué debo hacer si tengo una duda que no está contemplada expresamente en la política? Se debe identificar el producto, la etapa del proceso y la condición específica que genera la duda. Si no existe una disposición expresa o la situación implica interpretar, modificar o exceptuar una política, debe escalarse a la instancia responsable antes de comprometer una respuesta o continuar el proceso.">
+          <summary>
+            <span class="faq-q">¿Qué debo hacer si tengo una duda que no está contemplada expresamente en la política?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Se debe identificar el producto, la etapa del proceso y la condición específica que genera la duda. Si no existe una disposición expresa o la situación implica interpretar, modificar o exceptuar una política, debe escalarse a la instancia responsable antes de comprometer una respuesta o continuar el proceso.</p>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="faq-empty" id="faqEmpty" hidden>
+        No encontramos preguntas con esos filtros. Prueba con otra palabra.
+      </div>
+
+      <p class="faq-foot">CF Navega · Consulta orientativa basada en políticas internas</p>
+
+    </section>
+
+    <nav class="page-pager" aria-label="Navegación entre páginas"><a class="prev" href="excepciones.html"><span class="pager-label">← Anterior</span><span class="pager-title">Política de excepciones</span></a><a class="next" href="index.html"><span class="pager-label">Siguiente →</span><span class="pager-title">Inicio</span></a></nav>
+  </main>
+
+  <footer>
+
+    <div>
+
+      <strong>
+        Wiki Hipotecaria
+      </strong>
+
+      <span>
+        Canal PropTech · Vivienda Nueva y Usada
+      </span>
+
+    </div>
+
+    <span>
+      Elaborado por Laura Dussán · Líder Proptech · 2026
+    </span>
+
+  </footer>
+
+  <div class="modal" id="profileModal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeModal" aria-label="Cerrar">×</button><div id="modalContent"></div></div></div>
+
+  <div class="search-modal" id="searchModal" hidden><div class="search-modal-backdrop" data-close-search></div><div class="search-modal-box" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle"><div class="search-modal-head"><h2 id="searchModalTitle">Buscar en la wiki</h2><button type="button" data-close-search aria-label="Cerrar buscador">×</button></div><div class="search-modal-input"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21"></path></svg><input id="globalSearchModal" type="search" placeholder="Ejemplo: Acierta, RCI, LTV, parqueadero, PPT…" autocomplete="off" aria-label="Buscar en toda la wiki"><kbd>Esc</kbd></div><div class="search-modal-results" id="searchModalResults" aria-live="polite"><p class="search-modal-hint">Escribe para buscar en todas las secciones de la wiki.</p></div></div></div>
+
+  <button type="button" class="to-top" id="toTop" aria-label="Volver arriba">↑</button>
+
+  <script src="scripts.js"></script>
+  <script src="sitio.js"></script>
+</body>
+
+</html>

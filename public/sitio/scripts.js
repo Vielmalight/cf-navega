@@ -68,22 +68,44 @@
 
   function setActiveNav(id) {
     navLinks.forEach((link) => {
+      if (link.hasAttribute("data-open-tab")) return;
       link.classList.toggle("is-current", link.getAttribute("href") === "#" + id);
     });
   }
 
-  if ("IntersectionObserver" in window && navSections.length) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveNav(visible.target.id);
-      },
-      { rootMargin: "-20% 0px -60% 0px", threshold: [0.05, 0.2, 0.5] }
-    );
-    navSections.forEach((section) => observer.observe(section));
+  const tabNavLinks = $$("[data-open-tab]", siteNav);
+  tabNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      tabNavLinks.forEach((item) => item.classList.remove("is-current"));
+      link.classList.add("is-current");
+    });
+  });
+
+  function updateActiveNav() {
+    if (!navSections.length) return;
+    const offset = 140;
+    let current = null;
+    navSections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= offset) current = section;
+    });
+    if (current) setActiveNav(current.id);
   }
+
+  let navTicking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (navTicking) return;
+      navTicking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveNav();
+        navTicking = false;
+      });
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", updateActiveNav);
+  updateActiveNav();
 
   /* =======================================================
      LUPA / BUSCADOR
@@ -171,7 +193,7 @@
           escapeHTML(item.heading) +
           "</strong><span>" +
           escapeHTML(item.snippet || "Ver sección") +
-          "</span></button>"
+          "</span></button>",
       )
       .join("");
 
@@ -179,7 +201,10 @@
       button.addEventListener("click", () => {
         const [group, target] = (button.dataset.searchTab || "").split(":");
         if (group && target) activateModuleTab(group, target);
-        $("#" + button.dataset.searchTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        $("#" + button.dataset.searchTarget)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       });
     });
   }
@@ -210,7 +235,10 @@
   const ASALARIADO = [
     ["Término indefinido", "Mínimo 6 meses de antigüedad."],
     ["Término fijo", "Renovación demostrada y mínimo 1 año de continuidad."],
-    ["Temporal", "La entidad temporal asume la seguridad social y se exige mínimo 18 meses de antigüedad."]
+    [
+      "Temporal",
+      "La entidad temporal asume la seguridad social y se exige mínimo 18 meses de antigüedad.",
+    ],
   ];
 
   const INDEP_TIPOS = {
@@ -222,8 +250,8 @@
         "Experiencia mínima de 2 años.",
         "Ingreso mínimo de 1,5 SMMLV.",
         "Debe acreditar ingresos provenientes de su actividad económica.",
-        "Documentación y validación de ingresos según su régimen tributario."
-      ]
+        "Documentación y validación de ingresos según su régimen tributario.",
+      ],
     },
     transportador: {
       nombre: "Transportador dueño",
@@ -233,8 +261,8 @@
         "Experiencia mínima de 2 años.",
         "Ingreso mínimo de 1,5 SMMLV.",
         "Demostrar propiedad del vehículo e ingresos derivados de él.",
-        "Evaluación según las condiciones particulares de su actividad."
-      ]
+        "Evaluación según las condiciones particulares de su actividad.",
+      ],
     },
     conductor: {
       nombre: "Conductor (taxi o bus)",
@@ -244,8 +272,8 @@
         "Cumplir UNA de estas condiciones: (a) 3 años demostrables con continuidad, o (b) 18 meses trabajando para el mismo dueño de taxi o bus.",
         "No tener multas vigentes.",
         "Demostrar ahorro mínimo del 10 % del valor de la vivienda.",
-        "Estar afiliado a Sisbén o EPS desde hace mínimo 3 años."
-      ]
+        "Estar afiliado a Sisbén o EPS desde hace mínimo 3 años.",
+      ],
     },
     rentista: {
       nombre: "Rentista de capital",
@@ -254,8 +282,8 @@
         "Experiencia mínima de 2 años.",
         "Ingreso mínimo de 1,5 SMMLV.",
         "Demostrar procedencia y estabilidad de los ingresos.",
-        "Ingresos respaldados con los documentos de su actividad."
-      ]
+        "Ingresos respaldados con los documentos de su actividad.",
+      ],
     },
     libre: {
       nombre: "Profesional liberal",
@@ -265,8 +293,8 @@
         "Experiencia mínima de 2 años.",
         "Ingreso mínimo de 1,5 SMMLV.",
         "Demostrar el ejercicio de su actividad profesional.",
-        "Acreditar los ingresos generados por su actividad."
-      ]
+        "Acreditar los ingresos generados por su actividad.",
+      ],
     },
     prestador: {
       nombre: "Prestador de servicios",
@@ -276,9 +304,9 @@
         "Experiencia mínima de 2 años.",
         "Ingreso mínimo de 1,5 SMMLV.",
         "Demostrar continuidad en la prestación de servicios.",
-        "Ingresos validados con los soportes correspondientes."
-      ]
-    }
+        "Ingresos validados con los soportes correspondientes.",
+      ],
+    },
   };
 
   function modalAsalariado() {
@@ -287,7 +315,9 @@
       '<p class="modal-kicker">Perfil · Contrato laboral</p>' +
       "<p>Persona vinculada mediante contrato laboral. La antigüedad exigida depende del término del contrato.</p>" +
       '<div class="table-scroll"><table class="data-table"><thead><tr><th>Tipo de contrato</th><th>Condición</th></tr></thead><tbody>' +
-      ASALARIADO.map((row) => "<tr><td>" + escapeHTML(row[0]) + "</td><td>" + escapeHTML(row[1]) + "</td></tr>").join("") +
+      ASALARIADO.map(
+        (row) => "<tr><td>" + escapeHTML(row[0]) + "</td><td>" + escapeHTML(row[1]) + "</td></tr>",
+      ).join("") +
       "</tbody></table></div>" +
       '<div class="callout"><strong>Ingreso mínimo:</strong> 1 SMMLV · <strong>Acierta mínimo:</strong> ≥ 658.</div>'
     );
@@ -337,7 +367,7 @@
           key +
           '">' +
           escapeHTML(INDEP_TIPOS[key].nombre) +
-          "</button>"
+          "</button>",
       )
       .join("");
 
@@ -381,7 +411,7 @@
     asalariado: modalAsalariado,
     pensionado: modalPensionado,
     premium: modalPremium,
-    independiente: modalIndependiente
+    independiente: modalIndependiente,
   };
 
   function openProfile(profile) {
@@ -421,8 +451,7 @@
       if (!card || !modal || !modalContent) return;
       const title = card.querySelector("h3")?.textContent.trim() || "Credifamilia";
       const text = card.querySelector("p")?.textContent.trim() || "";
-      modalContent.innerHTML =
-        "<h2>" + escapeHTML(title) + "</h2><p>" + escapeHTML(text) + "</p>";
+      modalContent.innerHTML = "<h2>" + escapeHTML(title) + "</h2><p>" + escapeHTML(text) + "</p>";
       modal.classList.add("show");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
@@ -453,7 +482,16 @@
   }
 
   $$("[data-tab]").forEach((button) => {
-    button.addEventListener("click", () => activatePolicyTab(button.dataset.tab));
+    button.addEventListener("click", () => {
+      activatePolicyTab(button.dataset.tab);
+      const hash =
+        button.dataset.tab === "producto" ? "politicas-producto" : "politicas-solicitantes";
+      try {
+        history.replaceState(null, "", "#" + hash);
+      } catch (error) {
+        /* noop */
+      }
+    });
   });
 
   function applyPolicyHash() {
@@ -493,18 +531,53 @@
     }
   }
 
+  function syncModuleHash(sectionId, group, target) {
+    if (!sectionId) return;
+    try {
+      history.replaceState(null, "", "#" + sectionId + ":" + group + ":" + target);
+    } catch (error) {
+      /* noop */
+    }
+  }
+
+  function applyTabHash() {
+    const raw = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    const parts = raw.split(":");
+    if (parts.length !== 3) return;
+    const [sectionId, group, target] = parts;
+    if (!document.getElementById(sectionId)) return;
+    activateModuleTab(group, target);
+    window.setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
+
   $$("[data-module-tab]").forEach((button) => {
     button.addEventListener("click", () => {
-      activateModuleTab(button.dataset.moduleTab, button.dataset.target);
+      const group = button.dataset.moduleTab;
+      const target = button.dataset.target;
+      activateModuleTab(group, target);
+      syncModuleHash(button.closest("section[id]")?.id, group, target);
     });
   });
 
   $$("[data-open-tab]").forEach((link) => {
     link.addEventListener("click", () => {
       const [group, target] = link.dataset.openTab.split(":");
-      if (group && target) activateModuleTab(group, target);
+      if (!group || !target) return;
+      activateModuleTab(group, target);
+      const sectionId = link.getAttribute("href")?.replace(/^#/, "");
+      syncModuleHash(sectionId, group, target);
     });
   });
+
+  window.addEventListener("hashchange", applyTabHash);
+  applyTabHash();
+
+  window.CF_TABS = {
+    activateModuleTab,
+    activatePolicyTab,
+  };
 
   /* =======================================================
      RESTRICCIONES: FILTRO
@@ -606,6 +679,28 @@
   });
   applyFaqFilter();
 
+  function addAccordionActions(container) {
+    if (!container || !container.parentNode) return;
+    if (container.previousElementSibling?.classList.contains("accordion-actions")) return;
+    const actions = document.createElement("div");
+    actions.className = "accordion-actions";
+    actions.innerHTML =
+      '<button type="button" class="chip-btn" data-expand-all>Expandir todo</button>' +
+      '<button type="button" class="chip-btn" data-collapse-all>Contraer todo</button>';
+    container.parentNode.insertBefore(actions, container);
+    actions.addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      const open = button.hasAttribute("data-expand-all");
+      $$("details", container).forEach((item) => {
+        if (!item.hidden) item.open = open;
+      });
+    });
+  }
+
+  addAccordionActions(glossaryGrid);
+  addAccordionActions(faqList);
+
   /* =======================================================
      DOCUMENTACIÓN POR PERFIL Y ETAPA
      ======================================================= */
@@ -616,13 +711,59 @@
     contrato: "indefinido",
     stage: 1,
     legalProduct: 0,
-    statuses: {}
+    statuses: {},
   };
+
+  (function applyDocsParams() {
+    const params = new URLSearchParams(window.location.search);
+    const perfil = params.get("perfil");
+    const etapa = Number(params.get("etapa"));
+    const legal = Number(params.get("legal"));
+    const contrato = params.get("contrato");
+
+    if (perfil === "duenoComun" || perfil === "duenoSimplificado") {
+      docsState.profile = "dueno";
+      docsState.duenoRegimen = perfil === "duenoSimplificado" ? "simplificado" : "comun";
+    } else if (perfil === "dueno") {
+      docsState.profile = "dueno";
+    } else if (perfil && DATA.perfiles && DATA.perfiles[perfil]) {
+      docsState.profile = perfil;
+    }
+
+    if (Number.isFinite(etapa) && etapa >= 1 && etapa <= 4) {
+      docsState.stage = etapa;
+    }
+
+    if (Number.isFinite(legal) && legal >= 0 && legal <= 3) {
+      docsState.legalProduct = legal;
+    }
+
+    if (contrato === "indefinido" || contrato === "fijo" || contrato === "temporal") {
+      docsState.contrato = contrato;
+    }
+  })();
+
+  function syncDocsUrl() {
+    const params = new URLSearchParams();
+    params.set("perfil", resolvedProfileKey());
+    params.set("etapa", String(docsState.stage));
+    if (docsState.stage === 4) params.set("legal", String(docsState.legalProduct));
+    if (docsState.profile === "asalariado") params.set("contrato", docsState.contrato);
+    try {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + "?" + params.toString() + window.location.hash,
+      );
+    } catch (error) {
+      /* noop */
+    }
+  }
 
   const PROFILE_LIST = [
     { key: "asalariado", label: "Asalariado" },
     { key: "pensionado", label: "Pensionado" },
-    { key: "tecnico", label: "Técnico / tecnólogo" }
+    { key: "tecnico", label: "Técnico / tecnólogo" },
   ];
 
   const INDEP_LIST = [
@@ -631,14 +772,14 @@
     { key: "transportista", label: "Transportista" },
     { key: "conductor", label: "Conductor" },
     { key: "rentista", label: "Rentista de capital" },
-    { key: "prestador", label: "Prestador de servicios" }
+    { key: "prestador", label: "Prestador de servicios" },
   ];
 
   const STAGES = [
     { key: 1, label: "Solicitud / aprobación" },
     { key: 2, label: "Carta definitiva" },
     { key: 3, label: "Reproceso" },
-    { key: 4, label: "Legalización" }
+    { key: 4, label: "Legalización" },
   ];
 
   const STATUS_OPTIONS = [
@@ -648,7 +789,7 @@
     "Validado",
     "Por vencer",
     "Vencido",
-    "No aplica"
+    "No aplica",
   ];
 
   function resolvedProfileKey() {
@@ -664,7 +805,10 @@
 
   function profileLabel() {
     if (docsState.profile === "dueno") {
-      return "Dueño de negocio · Régimen " + (docsState.duenoRegimen === "simplificado" ? "simplificado" : "común");
+      return (
+        "Dueño de negocio · Régimen " +
+        (docsState.duenoRegimen === "simplificado" ? "simplificado" : "común")
+      );
     }
     const found = PROFILE_LIST.concat(INDEP_LIST).find((item) => item.key === docsState.profile);
     return found ? found.label : "Perfil";
@@ -679,7 +823,7 @@
     if (!raw) {
       return {
         texto: "Sin vigencia expresa en política; validar actualidad y autenticidad.",
-        conflicto: false
+        conflicto: false,
       };
     }
     if (/conflicto\s*60/i.test(raw) || /60[^.]*\b(vs|frente a)\b[^.]*30/i.test(raw)) {
@@ -688,7 +832,7 @@
     if (/45\s*general\s*\/\s*30/i.test(raw)) {
       return {
         texto: resolvedProfileKey() === "rentista" ? "30 días" : "45 días",
-        conflicto: true
+        conflicto: true,
       };
     }
     if (/60/.test(raw) && /30/.test(raw) && /indica/i.test(raw)) {
@@ -713,7 +857,7 @@
         item.key +
         '">' +
         escapeHTML(item.label) +
-        "</button>"
+        "</button>",
     ).join("");
 
     const independent = INDEP_LIST.map(
@@ -724,19 +868,18 @@
         item.key +
         '">' +
         escapeHTML(item.label) +
-        "</button>"
+        "</button>",
     ).join("");
 
     container.innerHTML =
-      primary +
-      '<span class="pill-group-label">Independiente</span>' +
-      independent;
+      primary + '<span class="pill-group-label">Independiente</span>' + independent;
 
     $$("[data-docs-profile]", container).forEach((button) => {
       button.addEventListener("click", () => {
         docsState.profile = button.dataset.docsProfile;
         docsState.stage = docsState.stage || 1;
         renderDocs();
+        syncDocsUrl();
       });
     });
   }
@@ -759,7 +902,7 @@
               ">" +
               value.charAt(0).toUpperCase() +
               value.slice(1) +
-              "</option>"
+              "</option>",
           )
           .join("") +
         "</select></label>" +
@@ -767,8 +910,8 @@
         (docsState.contrato === "indefinido"
           ? "Mínimo 6 meses de antigüedad."
           : docsState.contrato === "fijo"
-          ? "Renovación demostrada y mínimo 1 año de continuidad."
-          : "La temporal asume la seguridad social y se exige mínimo 18 meses de antigüedad.") +
+            ? "Renovación demostrada y mínimo 1 año de continuidad."
+            : "La temporal asume la seguridad social y se exige mínimo 18 meses de antigüedad.") +
         "</p>";
     } else if (docsState.profile === "dueno") {
       container.innerHTML =
@@ -792,10 +935,12 @@
     $("#docsContrato")?.addEventListener("change", (event) => {
       docsState.contrato = event.target.value;
       renderDocs();
+      syncDocsUrl();
     });
     $("#docsRegimen")?.addEventListener("change", (event) => {
       docsState.duenoRegimen = event.target.value;
       renderDocs();
+      syncDocsUrl();
     });
   }
 
@@ -810,13 +955,14 @@
         stage.key +
         '">' +
         escapeHTML(stage.label) +
-        "</button>"
+        "</button>",
     ).join("");
 
     $$("[data-docs-stage]", container).forEach((button) => {
       button.addEventListener("click", () => {
         docsState.stage = Number(button.dataset.docsStage);
         renderDocs();
+        syncDocsUrl();
       });
     });
   }
@@ -845,7 +991,7 @@
             index +
             '">' +
             escapeHTML(ruta.producto) +
-            "</button>"
+            "</button>",
         )
         .join("") +
       "</div>";
@@ -854,6 +1000,7 @@
       button.addEventListener("click", () => {
         docsState.legalProduct = Number(button.dataset.legalProduct);
         renderDocs();
+        syncDocsUrl();
       });
     });
   }
@@ -866,7 +1013,7 @@
     const checked = status !== "Pendiente" && status !== "No aplica";
 
     return (
-      '<tr data-doc-row>' +
+      "<tr data-doc-row>" +
       '<td class="cell-check"><input type="checkbox" id="' +
       escapeHTML(checkId) +
       '" data-doc-check="' +
@@ -884,7 +1031,9 @@
       "</td>" +
       "<td>" +
       escapeHTML(vigencia.texto) +
-      (vigencia.conflicto ? '<span class="conflict-tag">Vigencia por confirmar con Crédito</span>' : "") +
+      (vigencia.conflicto
+        ? '<span class="conflict-tag">Vigencia por confirmar con Crédito</span>'
+        : "") +
       "</td>" +
       '<td><span class="condition-badge">' +
       escapeHTML(row.condicion || "—") +
@@ -896,7 +1045,11 @@
       '">' +
       STATUS_OPTIONS.map(
         (option) =>
-          "<option" + (status === option ? " selected" : "") + ">" + escapeHTML(option) + "</option>"
+          "<option" +
+          (status === option ? " selected" : "") +
+          ">" +
+          escapeHTML(option) +
+          "</option>",
       ).join("") +
       "</select></td>" +
       "</tr>"
@@ -934,9 +1087,7 @@
     } else {
       html =
         '<div class="docs-pending"><strong>Checklist pendiente de confirmación con Jurídica/Operaciones.</strong>' +
-        (bloque?.parrafos?.length
-          ? "<p>" + escapeHTML(bloque.parrafos[0]) + "</p>"
-          : "") +
+        (bloque?.parrafos?.length ? "<p>" + escapeHTML(bloque.parrafos[0]) + "</p>" : "") +
         "</div>";
       if (bloque?.parrafos?.length > 1) {
         html +=
@@ -1035,12 +1186,16 @@
     }
 
     notesBox.innerHTML = notes.length
-      ? '<ul class="check-list">' + notes.map((note) => "<li>" + escapeHTML(note) + "</li>").join("") + "</ul>"
+      ? '<ul class="check-list">' +
+        notes.map((note) => "<li>" + escapeHTML(note) + "</li>").join("") +
+        "</ul>"
       : "<p>No hay notas adicionales para este perfil y etapa.</p>";
 
     const rules = DATA.reglasGenerales || [];
     rulesBox.innerHTML =
-      '<ul class="check-list">' + rules.map((rule) => "<li>" + escapeHTML(rule) + "</li>").join("") + "</ul>";
+      '<ul class="check-list">' +
+      rules.map((rule) => "<li>" + escapeHTML(rule) + "</li>").join("") +
+      "</ul>";
   }
 
   function renderContext() {
@@ -1095,13 +1250,17 @@
     if (docsState.stage === 4) {
       const bloque = DATA.legalizacion?.bloques?.[docsState.legalProduct];
       rows = bloque?.filas || [];
-      title = "Legalización · " + (DATA.legalizacion?.rutas?.[docsState.legalProduct]?.producto || "");
+      title =
+        "Legalización · " + (DATA.legalizacion?.rutas?.[docsState.legalProduct]?.producto || "");
     } else {
       rows = perfil.etapas?.[docsState.stage]?.filas || [];
       title = profileLabel() + " · " + (STAGES.find((s) => s.key === docsState.stage)?.label || "");
     }
 
-    const keyPrefix = docsState.stage === 4 ? "legal-" + docsState.legalProduct : resolvedProfileKey() + "-" + docsState.stage;
+    const keyPrefix =
+      docsState.stage === 4
+        ? "legal-" + docsState.legalProduct
+        : resolvedProfileKey() + "-" + docsState.stage;
 
     const lines = [
       "WIKI HIPOTECARIA CREDIFAMILIA",
@@ -1110,7 +1269,7 @@
       "Etapa: " + (STAGES.find((s) => s.key === docsState.stage)?.label || ""),
       title && docsState.stage === 4 ? "Ruta: " + title : "",
       "Anexo 6-A · septiembre 2026",
-      ""
+      "",
     ].filter(Boolean);
 
     rows.forEach((row, index) => {
@@ -1126,7 +1285,7 @@
           " | " +
           vigencia.texto +
           " | " +
-          status
+          status,
       );
       if (row.descripcion) lines.push("    " + row.descripcion);
       if (row.nota) lines.push("    Nota: " + row.nota);
@@ -1146,6 +1305,33 @@
       window.alert("No fue posible descargar el checklist en este navegador.");
     }
   });
+
+  window.CF_DOCS = {
+    select(options = {}) {
+      const perfil = options.perfil;
+      if (perfil === "duenoComun" || perfil === "duenoSimplificado") {
+        docsState.profile = "dueno";
+        docsState.duenoRegimen = perfil === "duenoSimplificado" ? "simplificado" : "comun";
+      } else if (perfil === "dueno") {
+        docsState.profile = "dueno";
+      } else if (perfil && DATA.perfiles?.[perfil]) {
+        docsState.profile = perfil;
+      }
+      const etapa = Number(options.etapa);
+      if (Number.isFinite(etapa) && etapa >= 1 && etapa <= 4) docsState.stage = etapa;
+      const legal = Number(options.legal);
+      if (Number.isFinite(legal) && legal >= 0 && legal <= 3) docsState.legalProduct = legal;
+      if (
+        options.contrato === "indefinido" ||
+        options.contrato === "fijo" ||
+        options.contrato === "temporal"
+      ) {
+        docsState.contrato = options.contrato;
+      }
+      renderDocs();
+      syncDocsUrl();
+    },
+  };
 
   renderDocs();
 })();

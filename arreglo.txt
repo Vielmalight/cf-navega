@@ -1,12 +1,78 @@
-En la sección del glosario (tarjetas de términos con "+" que se expanden como acordeón), hay un bug visual: cuando abro una tarjeta, las otras tarjetas de la misma fila también se agrandan y quedan con espacio vacío en blanco.
+# TAREA: Remodelación de la estructura visual y de navegación de la Wiki Hipotecaria Credifamilia
 
-Causa: el grid usa por defecto `align-items: stretch`, así que todas las tarjetas de una fila se igualan a la altura de la más alta.
+## Contexto
+El sitio vive en public/sitio/ (HTML estático, se muestra en un iframe) y se despliega en Vercel. Hoy es una sola página muy larga y plana: todas las secciones (otorgamiento, productos, documentación, VIP, vivienda usada, mejora, etc.) se leen una debajo de otra con scroll infinito. La clienta pide:
+- Más orden.
+- Links que lleven a otras ventanas/páginas.
+- Que no sea tan plana ni tan extensa.
+- Una navegación interactiva, intuitiva y más divertida de leer, para que funcione mejor.
 
-Lo que necesito:
-1. Ubica el contenedor grid del glosario (el que renderiza las 55 entradas en 3 columnas) y agrega `align-items: start` (en Tailwind: `items-start`).
-2. Verifica que la tarjeta no tenga `h-full` ni una altura fija que la fuerce a estirarse. Si la tiene, quítala.
-3. Resultado esperado: al abrir una tarjeta, solo esa crece con su definición; las vecinas mantienen su altura compacta original.
-4. No cambies nada más: ni colores, ni textos, ni la lógica de abrir/cerrar, ni el filtrado por categorías, ni el buscador.
-5. Comprueba que se vea bien en móvil (1 columna) y en escritorio (3 columnas).
+## Regla de oro
+NO cambies el contenido de la política: textos normativos, cifras, porcentajes, tablas, numerales y notas legales se conservan idénticos. Solo cambias cómo se organiza, se navega y se ve. Si algo del contenido parece error, no lo corrijas: déjalo listado en un archivo REVISION-CONTENIDO.md.
 
-Al terminar, dime qué archivo y qué líneas modificaste.
+## 1. Arquitectura: de una página larga a un sitio por secciones
+Convierte el sitio en un "hub" con varias páginas que comparten el mismo header, estilos y scripts (assets compartidos: css/sitio.css, js/sitio.js):
+
+- index.html → Portada/Hub: hero actual, quiénes somos/misión/visión, y tarjetas grandes de acceso a cada módulo (ícono, título, descripción de una línea, botón "Entrar").
+- Una página por módulo grande, por ejemplo:
+  - otorgamiento.html (proceso de originación, mercado objetivo, mercado excluido y excepciones, restricciones vigentes, Oficial de Cumplimiento)
+  - documentacion.html (checklist interactivo por perfil y etapa, verificación, documentación mínima)
+  - vivienda-nueva.html (VIS y NO VIS: ingresos, aceptación, rechazo)
+  - vivienda-vip.html (VIP y VIPA, RCI)
+  - vivienda-usada.html (solicitantes, políticas 2026, aceptación, garantía)
+  - productos-especiales.html (mejora, acabados VIS, alquiler, extranjeros PPT, desistimiento, vivienda familiar, sector económico)
+  - Las demás secciones que hoy existan en la navegación rápida van en el módulo que les corresponda.
+- Cada página debe cargar corto: máximo 2 a 3 pantallas de scroll. Lo demás va en pestañas, acordeones o subpáginas.
+
+Mantén las anclas actuales (#vivienda-nueva, #documentacion, etc.) funcionando como redirecciones o enlaces profundos para no romper links existentes. Los links internos deben abrir en la misma pestaña; los externos (p. ej. "Visitar página oficial de Credifamilia") en pestaña nueva con rel="noopener".
+
+## 2. Navegación
+- Header fijo y limpio en todas las páginas: logo, "Wiki Hipotecaria", menú principal con los módulos (mega-menú o dropdown) y el buscador.
+- Breadcrumb en cada página (Inicio › Productos › Vivienda usada).
+- Barra lateral "En esta página" (sticky) que resalte SOLO el ítem activo según el scroll (scrollspy con IntersectionObserver). Hoy resalta varios a la vez: es un bug a corregir.
+- Botones "Anterior / Siguiente" al final de cada página para recorrer el contenido en orden.
+- Buscador global (atajo Ctrl+K / Cmd+K) con resultados agrupados por módulo, que lleve directo a la sección. Puede usar un índice JSON generado de los títulos y textos del sitio (sin dependencias pesadas).
+- Botón "volver arriba" y barra de progreso de lectura fina bajo el header.
+- Enlaces cruzados "Consulta relacionada" convertidos en chips/botones que lleven a la otra página o sección (por ejemplo, de VIP a las reglas de vivienda nueva).
+
+## 3. Interactividad (que sea más divertida de leer)
+- Tarjetas con hover/focus suave (elevación, color de borde) que expanden o llevan al detalle.
+- Pestañas (tabs) para dividir contenidos largos: perfiles, 2.2.1/2.2.2/2.2.3, 2.3.x, 2.5 a 2.11. Que recuerden la pestaña activa en el hash de la URL.
+- Acordeones para el detalle secundario, con animación de apertura. Agrega "Expandir todo / Contraer todo" donde haya muchos.
+- "Selector guiado" en la portada: 3 pasos con botones (perfil del cliente → tipo de producto → etapa) que lleve al usuario directo a la sección y al checklist correspondiente.
+- Tarjetas de cifras clave (1 SMMLV, 1,5 SMMLV, Máx. 50 %, plazos) con animación de conteo al entrar en pantalla.
+- Tablas de comparación con encabezado sticky, filas con hover, y filtros rápidos donde tenga sentido.
+- Microanimaciones sutiles (fade/slide al entrar, transiciones de 150 a 250 ms). Respeta prefers-reduced-motion.
+- Conserva el checklist de documentación y mejora la experiencia: el progreso (barra "X de Y documentos") se mantiene durante la consulta.
+
+## 4. Diseño visual (menos plano)
+- Mantén la paleta verde de Credifamilia, la tipografía y el logo.
+- Agrega jerarquía: banners de módulo con degradado verde y título grande, tarjetas con sombra suave, separadores con más aire, iconos consistentes en SVG en lugar de emojis (una casa distinta para nueva y usada).
+- Un solo ancho de contenido consistente en todas las secciones (hoy cambia entre secciones, unas pegadas a la izquierda y otras centradas). Define un contenedor máximo único y úsalo siempre.
+- Bloques de alerta con estilos claros y consistentes (informativo, importante, restricción) con icono.
+- Pastillas (badges) de forma consistente: el 90 % verde solo aparece en una fila de la tabla, o va en todas o en ninguna.
+- Tarjetas hermanas deben tener altura coherente sin dejar grandes espacios vacíos dentro (¿Cuándo remitir un caso?, Límite de descuentos mensuales, Desembolso).
+- Corrige el efecto borroso/sucio bajo el header sticky y la franja de texto borroso junto a "Ver notas del perfil".
+- Las tablas anchas (rutas de atención y autorización) no deben cortar el texto: si no caben, conviértelas en tarjetas apiladas en pantallas pequeñas.
+- La tabla de legalización "Cliente actual / Cliente nuevo" se presenta en dos listas lado a lado o en pestañas, no como filas desfasadas.
+- Totalmente responsive (móvil, tablet, escritorio). En móvil, la navegación pasa a menú hamburguesa y la barra lateral a un selector desplegable.
+
+## 5. Limpieza que debes hacer de paso
+- Elimina textos que son notas para desarrollo y no para el usuario final (por ejemplo, "La web debe mostrar regla de corte, no solo 'últimos 2 meses'" y "Mostrar las excepciones desplegables" en el checklist). Convierte la intención en comportamiento real: la regla de corte y las excepciones desplegables sí deben quedar implementadas.
+- Corrige "Empalmados Credifamilia" por "Empleados Credifamilia".
+- Quita los espacios antes del punto después de enlaces ("VIS y NO VIS .").
+- Palabras azules sueltas que parecen links pero no lo son: o se convierten en enlaces reales, o se pasan a texto normal.
+- "Espere el concepto…" a "Esperar el concepto…" para igualar el infinitivo de los otros pasos.
+- Las imágenes/iconos que dejan huecos vacíos sobre los títulos de Quiénes somos / Misión / Visión: arreglar o quitar el hueco.
+
+## 6. Restricciones técnicas
+- Sin frameworks nuevos ni dependencias pesadas: HTML, CSS y JS vanilla (o lo que ya use el sitio).
+- Debe seguir desplegándose en Vercel sin pasos extra de build y funcionar abierto dentro del iframe actual y también de forma independiente.
+- Accesibilidad: navegación por teclado, foco visible, atributos aria en tabs, acordeones y menú, contraste AA.
+- Todos los links internos deben funcionar. Al terminar, revisa uno por uno y reporta los que no.
+
+## 7. Forma de trabajo
+1. Primero lee el sitio actual y entrega un plan breve: mapa de páginas propuesto (qué sección va en qué archivo) y estructura de navegación. Espera mi aprobación antes de escribir código.
+2. Implementa por fases: (a) estructura de páginas + header + navegación, (b) portada/hub + selector guiado, (c) tabs/acordeones/buscador, (d) pulido visual y responsive, (e) limpieza de la sección 5.
+3. Al final de cada fase, resume qué cambió y qué archivos tocaste.
+4. Al terminar, entrega: lista de archivos nuevos/modificados, checklist de links verificados, y REVISION-CONTENIDO.md con cualquier duda sobre el contenido.
