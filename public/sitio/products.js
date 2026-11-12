@@ -2,10 +2,28 @@
    PRODUCTOS · tarjetas interactivas (fuente: Anexo 6-A, septiembre 2026)
    ============================================================ */
 (function () {
+  const ICONS = {
+    nueva:
+      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M12 12v6M9 15h6"/></svg>',
+    usada:
+      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 16a3 3 0 1 0 6 0"/><path d="m15 13 1 3-3 1"/></svg>',
+    vip: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="m12 12 1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/></svg>',
+    empleados:
+      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M18 4h3v3"/></svg>',
+    mejoramiento:
+      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2.3-2.3z"/></svg>',
+    acabados:
+      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="12" height="6" rx="1.5"/><path d="M16 7h3v4h-7v3"/><path d="M12 14v6"/></svg>',
+  };
+
+  function iconFor(key) {
+    return ICONS[key] || ICONS.nueva;
+  }
+
   const PRODUCTS = [
     {
       id: "vivienda-nueva",
-      icon: "🏡",
+      icon: "nueva",
       title: "Vivienda nueva VIS y NO VIS",
       lead: "Financiación para adquisición de vivienda nueva en proyectos previamente evaluados por Credifamilia.",
       intro:
@@ -162,7 +180,7 @@
 
     {
       id: "vip",
-      icon: "⭐",
+      icon: "vip",
       title: "VIP",
       lead: "Viviendas con condiciones particulares dentro de la política de vivienda nueva.",
       intro:
@@ -175,7 +193,10 @@
         {
           h: "📊 RCI",
           p: "El RCI puede llegar hasta 35 %, siempre que:",
-          list: ["No cuente con subsidios.", "Cumpla las políticas establecidas para clientes Premium en VIS."],
+          list: [
+            "No cuente con subsidios.",
+            "Cumpla las políticas establecidas para clientes Premium en VIS.",
+          ],
         },
         {
           h: "💰 Recursos propios",
@@ -215,24 +236,30 @@
             "Extracto de pago a la constructora.",
           ],
         },
-
       ],
     },
 
     {
       id: "vivienda-usada",
-      icon: "🏠",
+      icon: "usada",
       title: "Vivienda usada",
       lead: "Financiación para adquisición de vivienda usada, sujeta a las condiciones del inmueble, la garantía y el perfil del solicitante.",
       blocks: [
         {
           h: "📋 Perfil de los solicitantes",
-          list: ["Se aplican los mismos criterios de número de solicitantes y perfil establecidos para vivienda nueva."],
+          list: [
+            "Se aplican los mismos criterios de número de solicitantes y perfil establecidos para vivienda nueva.",
+          ],
         },
         {
           h: "💰 Monto",
           subs: [
-            { h: "VIS", list: ["Máximo acorde con el tope VIS de acuerdo con la zona de ubicación del inmueble."] },
+            {
+              h: "VIS",
+              list: [
+                "Máximo acorde con el tope VIS de acuerdo con la zona de ubicación del inmueble.",
+              ],
+            },
             {
               h: "NO VIS",
               list: [
@@ -305,7 +332,7 @@
 
     {
       id: "empleados",
-      icon: "👩‍💼",
+      icon: "empleados",
       title: "Empleados Credifamilia",
       lead: "Condiciones especiales establecidas por la Junta Directiva para funcionarios de Credifamilia.",
       blocks: [
@@ -358,7 +385,9 @@
         },
         {
           h: "💼 Comisión",
-          list: ["Los créditos hipotecarios para funcionarios no generan comisión al asesor, ni por aprobación ni por desembolso."],
+          list: [
+            "Los créditos hipotecarios para funcionarios no generan comisión al asesor, ni por aprobación ni por desembolso.",
+          ],
         },
         {
           h: "⚠️ Excepciones",
@@ -379,7 +408,7 @@
 
     {
       id: "mejoramiento",
-      icon: "🛠️",
+      icon: "mejoramiento",
       title: "Mejoramiento de vivienda",
       lead: "Crédito destinado a realizar mejoras sobre una vivienda propia.",
       blocks: [
@@ -388,11 +417,15 @@
           subs: [
             {
               h: "Clientes nuevos",
-              list: ["Propietarios de vivienda propia libre de hipoteca y otros gravámenes que desean adquirir el crédito de mejoramiento."],
+              list: [
+                "Propietarios de vivienda propia libre de hipoteca y otros gravámenes que desean adquirir el crédito de mejoramiento.",
+              ],
             },
             {
               h: "Clientes actuales",
-              list: ["Clientes con crédito hipotecario con Credifamilia que desean adquirir un crédito adicional para mejoramiento de su vivienda principal."],
+              list: [
+                "Clientes con crédito hipotecario con Credifamilia que desean adquirir un crédito adicional para mejoramiento de su vivienda principal.",
+              ],
             },
           ],
         },
@@ -419,7 +452,9 @@
         },
         {
           h: "💰 Valor mínimo de la vivienda",
-          list: ["La vivienda sobre la cual se realiza el mejoramiento debe tener un valor mínimo de 81 SMMLV."],
+          list: [
+            "La vivienda sobre la cual se realiza el mejoramiento debe tener un valor mínimo de 81 SMMLV.",
+          ],
         },
         {
           h: "🏙️ Ubicación",
@@ -447,7 +482,11 @@
             { h: "Mínimo", list: ["$10 millones."] },
             {
               h: "Máximo",
-              list: ["Estrato 2: $50 millones.", "Estrato 3: $100 millones.", "Estrato 4 o superior: $200 millones."],
+              list: [
+                "Estrato 2: $50 millones.",
+                "Estrato 3: $100 millones.",
+                "Estrato 4 o superior: $200 millones.",
+              ],
             },
           ],
         },
@@ -480,7 +519,7 @@
 
     {
       id: "acabados-vis",
-      icon: "🎨",
+      icon: "acabados",
       title: "Acabados VIS",
       lead: "Crédito dirigido a viviendas de propiedad horizontal que se entregan en obra gris u obra blanca.",
       blocks: [
@@ -496,7 +535,11 @@
             { h: "Monto", list: ["Mínimo $5 millones."] },
             {
               h: "Plazo",
-              list: ["Mínimo 5 años.", "Máximo 20 años.", "Debe ser el mismo plazo del crédito hipotecario."],
+              list: [
+                "Mínimo 5 años.",
+                "Máximo 20 años.",
+                "Debe ser el mismo plazo del crédito hipotecario.",
+              ],
             },
             {
               h: "Valor comercial del inmueble",
@@ -522,7 +565,9 @@
         },
         {
           h: "🏠 Garantía",
-          list: ["La garantía corresponde a la hipoteca constituida sobre el inmueble financiado mediante el crédito hipotecario."],
+          list: [
+            "La garantía corresponde a la hipoteca constituida sobre el inmueble financiado mediante el crédito hipotecario.",
+          ],
         },
         {
           h: "📑 Sistema de amortización",
@@ -530,36 +575,68 @@
         },
         {
           h: "📌 Regla general",
-          list: ["En todo lo demás, el solicitante debe cumplir las mismas condiciones aplicables al crédito hipotecario VIS."],
+          list: [
+            "En todo lo demás, el solicitante debe cumplir las mismas condiciones aplicables al crédito hipotecario VIS.",
+          ],
         },
       ],
     },
   ];
 
   const COMPARE = [
-    ["🏡 Vivienda nueva VIS / NO VIS", "Adquisición de vivienda nueva", "5 a 20 años", "Proyecto y constructor deben ser evaluados"],
-    ["⭐ VIP", "Vivienda VIP", "Máx. 20 años", "Condiciones especiales de RCI, FNG y recursos propios"],
-    ["🏠 Vivienda usada", "Adquisición de vivienda usada", "5 a 20 años", "Condiciones específicas de inmueble y garantía"],
-    ["👩‍💼 Empleados Credifamilia", "Vivienda para funcionarios", "Según producto", "Condiciones especiales y descuento por nómina"],
+    [
+      "🏡 Vivienda nueva VIS / NO VIS",
+      "Adquisición de vivienda nueva",
+      "5 a 20 años",
+      "Proyecto y constructor deben ser evaluados",
+    ],
+    [
+      "⭐ VIP",
+      "Vivienda VIP",
+      "Máx. 20 años",
+      "Condiciones especiales de RCI, FNG y recursos propios",
+    ],
+    [
+      "🏠 Vivienda usada",
+      "Adquisición de vivienda usada",
+      "5 a 20 años",
+      "Condiciones específicas de inmueble y garantía",
+    ],
+    [
+      "👩‍💼 Empleados Credifamilia",
+      "Vivienda para funcionarios",
+      "Según producto",
+      "Condiciones especiales y descuento por nómina",
+    ],
     ["🛠️ Mejoramiento", "Remodelación y mejoras", "5 a 15 años", "Vivienda mínima de 81 SMMLV"],
     ["🎨 Acabados VIS", "Acabados de vivienda VIS en PH", "5 a 20 años", "LTV máximo 30 %"],
   ];
 
   const esc = (s) =>
-    String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    String(s).replace(
+      /[&<>"]/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+    );
+
+  const cleanHeading = (value) =>
+    String(value)
+      .replace(/^[\p{Extended_Pictographic}\uFE0F\u200D\s]+/u, "")
+      .trim();
 
   function renderList(items) {
-    return '<ul class="prod-list">' + items.map((i) => "<li>" + esc(i) + "</li>").join("") + "</ul>";
+    return (
+      '<ul class="prod-list">' + items.map((i) => "<li>" + esc(i) + "</li>").join("") + "</ul>"
+    );
   }
 
   function renderBlock(b) {
     let html = '<div class="prod-block">';
-    html += "<h4>" + esc(b.h) + "</h4>";
+    html += "<h4>" + esc(cleanHeading(b.h)) + "</h4>";
     if (b.p) html += "<p>" + esc(b.p) + "</p>";
     if (b.list) html += renderList(b.list);
     if (b.subs) {
       b.subs.forEach((s) => {
-        html += '<div class="prod-sub"><h5>' + esc(s.h) + "</h5>";
+        html += '<div class="prod-sub"><h5>' + esc(cleanHeading(s.h)) + "</h5>";
         if (s.p) html += "<p>" + esc(s.p) + "</p>";
         if (s.list) html += renderList(s.list);
         html += "</div>";
@@ -574,7 +651,12 @@
   }
 
   function renderDetail(p) {
-    let html = '<div class="prod-detail-head"><h3>' + esc(p.icon + " " + p.title) + "</h3>";
+    let html =
+      '<div class="prod-detail-head"><h3><span class="prod-detail-icon">' +
+      iconFor(p.icon) +
+      "</span><span>" +
+      esc(p.title) +
+      "</span></h3>";
     html += '<button type="button" class="prod-close" data-close>Cerrar ✕</button></div>';
     html += '<p class="prod-lead">' + esc(p.lead) + "</p>";
     if (p.intro) html += "<p>" + esc(p.intro) + "</p>";
@@ -592,20 +674,23 @@
         '<article class="product-card" data-product="' +
         p.id +
         '"><span class="product-icon">' +
-        p.icon +
+        iconFor(p.icon) +
         "</span><h3>" +
         esc(p.title) +
         "</h3><p>" +
         esc(p.lead) +
         '</p><button type="button" class="prod-toggle" data-open="' +
         p.id +
-        '">Ver detalle →</button></article>'
+        '">Ver detalle →</button></article>',
     ).join("");
 
     const table = document.getElementById("product-compare-body");
     if (table) {
       table.innerHTML = COMPARE.map(
-        (r) => "<tr>" + r.map((c) => "<td>" + esc(c) + "</td>").join("") + "</tr>"
+        (r) =>
+          "<tr>" +
+          r.map((c, index) => "<td>" + esc(index === 0 ? cleanHeading(c) : c) + "</td>").join("") +
+          "</tr>",
       ).join("");
     }
 
@@ -625,9 +710,9 @@
       openId = id;
       panel.innerHTML = renderDetail(p);
       panel.hidden = false;
-      grid.querySelectorAll(".product-card").forEach((c) =>
-        c.classList.toggle("is-open", c.getAttribute("data-product") === id)
-      );
+      grid
+        .querySelectorAll(".product-card")
+        .forEach((c) => c.classList.toggle("is-open", c.getAttribute("data-product") === id));
       grid.querySelectorAll(".prod-toggle").forEach((b) => {
         b.textContent = b.getAttribute("data-open") === id ? "Ver detalle ↑" : "Ver detalle →";
       });

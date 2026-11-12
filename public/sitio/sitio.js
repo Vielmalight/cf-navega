@@ -769,4 +769,68 @@
 
     renderResult();
   }
+
+  /* =======================================================
+     FASE D · TABLAS RESPONSIVE Y COMPARATIVAS
+     ======================================================= */
+
+  function labelTables(root) {
+    const scope = root || document;
+    $$(".data-table", scope).forEach((table) => {
+      if (table.dataset.labelsReady === "true") return;
+      const headers = $$("thead th", table).map((th) => th.textContent.trim());
+      $$("tbody tr", table).forEach((row) => {
+        $$("td", row).forEach((cell, index) => {
+          if (cell.hasAttribute("data-label")) return;
+          cell.dataset.label = headers[index] || "Detalle";
+        });
+      });
+      table.dataset.labelsReady = "true";
+    });
+  }
+
+  window.CF_LABEL_TABLES = labelTables;
+
+  function enhanceLegalCompare() {
+    const table = $$(".data-table").find((candidate) => {
+      const headers = $$("thead th", candidate).map((th) => normalize(th.textContent));
+      return (
+        headers.length === 2 && headers[0] === "cliente actual" && headers[1] === "cliente nuevo"
+      );
+    });
+    if (!table || table.dataset.legalCompare === "done") return;
+
+    const columns = [[], []];
+    $$("tbody tr", table).forEach((row) => {
+      const cells = $$("td", row);
+      if (cells[0]) columns[0].push(cells[0].textContent.trim());
+      if (cells[1]) columns[1].push(cells[1].textContent.trim());
+    });
+    if (!columns[0].length && !columns[1].length) return;
+
+    const wrapper = table.closest(".table-scroll") || table;
+    const grid = document.createElement("div");
+    grid.className = "split-grid legal-compare";
+
+    ["Cliente actual", "Cliente nuevo"].forEach((title, index) => {
+      const card = document.createElement("article");
+      card.className = "panel-card";
+      const heading = document.createElement("h4");
+      heading.textContent = title;
+      const list = document.createElement("ul");
+      columns[index].forEach((text) => {
+        const item = document.createElement("li");
+        item.textContent = text;
+        list.appendChild(item);
+      });
+      card.append(heading, list);
+      grid.appendChild(card);
+    });
+
+    table.dataset.legalCompare = "done";
+    wrapper.replaceWith(grid);
+  }
+
+  labelTables();
+  enhanceLegalCompare();
 })();

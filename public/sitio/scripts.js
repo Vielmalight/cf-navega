@@ -541,7 +541,12 @@
   }
 
   function applyTabHash() {
-    const raw = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    let raw = "";
+    try {
+      raw = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    } catch (error) {
+      return;
+    }
     const parts = raw.split(":");
     if (parts.length !== 3) return;
     const [sectionId, group, target] = parts;
@@ -693,7 +698,8 @@
       if (!button) return;
       const open = button.hasAttribute("data-expand-all");
       $$("details", container).forEach((item) => {
-        if (!item.hidden) item.open = open;
+        if (open && item.hidden) return;
+        item.open = open;
       });
     });
   }
@@ -1005,6 +1011,22 @@
     });
   }
 
+  function docNoteHTML(note) {
+    if (!note) return "";
+    if (/^Excepciones:/i.test(note)) {
+      const items = note
+        .replace(/^Excepciones:\s*/i, "")
+        .split(/;\s*/)
+        .filter(Boolean);
+      return (
+        '<details class="doc-note-details"><summary>Ver excepciones</summary><ul>' +
+        items.map((item) => "<li>" + escapeHTML(item) + "</li>").join("") +
+        "</ul></details>"
+      );
+    }
+    return '<small class="doc-note-text">' + escapeHTML(note) + "</small>";
+  }
+
   function rowHTML(row, index, keyPrefix, isLegal) {
     const key = keyPrefix + "-" + index;
     const status = statusFor(key, "Pendiente");
@@ -1024,7 +1046,7 @@
       "<td><strong>" +
       escapeHTML(row.documento) +
       "</strong>" +
-      (row.nota ? '<small class="doc-note-text">' + escapeHTML(row.nota) + "</small>" : "") +
+      docNoteHTML(row.nota) +
       "</td>" +
       "<td>" +
       escapeHTML(row.descripcion) +
@@ -1222,6 +1244,7 @@
     renderContext();
     renderStage();
     renderNotes();
+    window.CF_LABEL_TABLES?.();
     const search = $("#docsSearch");
     if (search && search.value) search.dispatchEvent(new Event("input"));
   }
