@@ -704,3 +704,16 @@ footer {
   background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.4px, transparent 1.6px);
   background-size: 22px 22px;
 }
+
+
+/* =========================================================
+   ARREGLO: la barra de avance de Documentación salía cortada
+   (una regla vieja de .progress la limitaba a 7px de alto)
+   ========================================================= */
+.docs-toolbar .progress {
+  height: auto;
+  margin-bottom: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
