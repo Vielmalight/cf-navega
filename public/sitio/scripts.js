@@ -28,86 +28,6 @@
   }
 
   /* =======================================================
-     NAVEGACIÓN RÁPIDA
-     ======================================================= */
-
-  const siteNav = $("#siteNav");
-  const menuBtn = $("#menuBtn");
-  const navClose = $("#navClose");
-  const navBackdrop = $("#navBackdrop");
-
-  function openNav() {
-    if (!siteNav) return;
-    siteNav.classList.add("is-open");
-    if (navBackdrop) navBackdrop.hidden = false;
-    if (menuBtn) menuBtn.setAttribute("aria-expanded", "true");
-  }
-
-  function closeNav() {
-    if (!siteNav) return;
-    siteNav.classList.remove("is-open");
-    if (navBackdrop) navBackdrop.hidden = true;
-    if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
-  }
-
-  menuBtn?.addEventListener("click", () => {
-    if (siteNav?.classList.contains("is-open")) closeNav();
-    else openNav();
-  });
-  navClose?.addEventListener("click", closeNav);
-  navBackdrop?.addEventListener("click", closeNav);
-
-  $$("a", siteNav).forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.matchMedia("(max-width: 1200px)").matches) closeNav();
-    });
-  });
-
-  const navLinks = $$("a[href^='#']", siteNav);
-  const navSections = $$("main section[id]");
-
-  function setActiveNav(id) {
-    navLinks.forEach((link) => {
-      if (link.hasAttribute("data-open-tab")) return;
-      link.classList.toggle("is-current", link.getAttribute("href") === "#" + id);
-    });
-  }
-
-  const tabNavLinks = $$("[data-open-tab]", siteNav);
-  tabNavLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      tabNavLinks.forEach((item) => item.classList.remove("is-current"));
-      link.classList.add("is-current");
-    });
-  });
-
-  function updateActiveNav() {
-    if (!navSections.length) return;
-    const offset = 140;
-    let current = null;
-    navSections.forEach((section) => {
-      if (section.getBoundingClientRect().top <= offset) current = section;
-    });
-    if (current) setActiveNav(current.id);
-  }
-
-  let navTicking = false;
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (navTicking) return;
-      navTicking = true;
-      window.requestAnimationFrame(() => {
-        updateActiveNav();
-        navTicking = false;
-      });
-    },
-    { passive: true },
-  );
-  window.addEventListener("resize", updateActiveNav);
-  updateActiveNav();
-
-  /* =======================================================
      LUPA / BUSCADOR
      ======================================================= */
 
@@ -491,6 +411,7 @@
       } catch (error) {
         /* noop */
       }
+      document.dispatchEvent(new CustomEvent("cf:tabsync"));
     });
   });
 
@@ -538,6 +459,7 @@
     } catch (error) {
       /* noop */
     }
+    document.dispatchEvent(new CustomEvent("cf:tabsync"));
   }
 
   function applyTabHash() {

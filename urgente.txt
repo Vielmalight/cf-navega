@@ -1,0 +1,121 @@
+Contexto: repo cf-navega, sitio estático en public/sitio/ (11 páginas HTML, sitio.css,
+sitio.js y scripts.js). El panel lateral "En esta página" ya se eliminó (o se está
+eliminando) y el menú superior queda con estilo verde como el ejemplo de la clienta.
+
+OBJETIVO
+Al pasar el mouse (hover) sobre cada opción del menú superior, debe desplegarse un panel
+blanco con las secciones que antes estaban en el panel lateral. Cada opción sigue
+navegando a su página al hacer clic.
+
+CONTENIDO DE CADA DESPLEGABLE (enlaces destino exactos)
+
+INICIO (index.html)
+- Inicio -> index.html#inicio
+- ¿Qué es Credifamilia? -> index.html#quienes
+- Módulos de la wiki -> index.html#modulos
+- Selector guiado -> index.html#selector
+
+OTORGAMIENTO (otorgamiento.html)
+- Quién puede solicitar -> otorgamiento.html#quien-puede
+- Requisitos de evaluación -> otorgamiento.html#requisitos-evaluacion
+- Mercado excluido -> otorgamiento.html#mercado-excluido
+- Exclusiones -> otorgamiento.html#exclusiones
+- Restricciones vigentes -> otorgamiento.html#restricciones
+- Oficial de Cumplimiento -> otorgamiento.html#oficial-cumplimiento
+
+PRODUCTOS (ya es desplegable). Cada ítem abre a su vez un submenú lateral (flyout a la
+derecha) con sus secciones:
+- Productos de vivienda (productos.html)
+    Comparador de productos -> productos.html#comparador-productos
+    Políticas de otorgamiento -> productos.html#politicas
+    Solicitantes y perfil -> productos.html#politicas-solicitantes
+    Políticas por producto -> productos.html#politicas-producto
+    RCI en vivienda VIP -> productos.html#rci-vip
+- Vivienda nueva (vivienda-nueva.html)
+    2.2.1 Ingresos -> vivienda-nueva.html#vivienda-nueva:nueva:ingresos
+    2.2.2 Aceptación -> vivienda-nueva.html#vivienda-nueva:nueva:aceptacion
+    2.2.3 Rechazo -> vivienda-nueva.html#vivienda-nueva:nueva:rechazo
+- Vivienda VIP y VIPA (vivienda-vip.html)
+    Plazo y RCI -> vivienda-vip.html#vip-vipa:vip:plazo
+    Recursos propios -> vivienda-vip.html#vip-vipa:vip:recursos
+    Demostración -> vivienda-vip.html#vip-vipa:vip:demostracion
+    Calificación BB -> vivienda-vip.html#vip-vipa:vip:bb
+    Acierta -> vivienda-vip.html#vip-vipa:vip:acierta
+    Restricción VIPA -> vivienda-vip.html#vip-vipa:vip:vipa
+- Vivienda usada (vivienda-usada.html)
+    2.4.1 Solicitantes -> vivienda-usada.html#vivienda-usada:usada:solicitantes
+    2.4.2 Políticas 2026 -> vivienda-usada.html#vivienda-usada:usada:cambios
+    2.4.3 Aceptación -> vivienda-usada.html#vivienda-usada:usada:aceptacion
+    2.4.4 Garantía -> vivienda-usada.html#vivienda-usada:usada:garantia
+- Productos especiales (productos-especiales.html)
+    2.5 Mejoramiento -> productos-especiales.html#especiales:especiales:mejoramiento
+    2.6 Acabados VIS -> productos-especiales.html#especiales:especiales:acabados
+    2.7 Leasing -> productos-especiales.html#especiales:especiales:leasing
+    2.8 Extranjeros PPT -> productos-especiales.html#especiales:especiales:ppt
+    2.9 Desistimiento -> productos-especiales.html#especiales:especiales:desistimiento
+    2.10 Vivienda familiar -> productos-especiales.html#especiales:especiales:familiar
+    2.11 Sector económico -> productos-especiales.html#especiales:especiales:sector
+
+DOCUMENTACIÓN (documentacion.html)
+- Checklist por perfil y etapa -> documentacion.html#documentacion
+
+APROBACIONES (ya es desplegable), con submenús laterales:
+- Instancias de aprobación (instancias.html)
+    3.1 Atribuciones de crédito -> instancias.html#instancias:instancias:atribuciones
+    3.2 Comité de Garantías -> instancias.html#instancias:instancias:garantias
+- Política de excepciones (excepciones.html)
+    4.1 Conceptos -> excepciones.html#excepciones:excepciones:conceptos
+    4.2 Cambio de empleo -> excepciones.html#excepciones:excepciones:empleo
+    4.3 Requisitos -> excepciones.html#excepciones:excepciones:requisitos
+
+CONSULTA (consulta.html)
+- Buscador -> consulta.html#buscador
+- Glosario -> consulta.html#glosario
+- Preguntas frecuentes -> consulta.html#faq
+
+NOTA SOBRE LOS ENLACES DE PESTAÑAS
+El formato es pagina.html#idSeccion:grupo:destino. scripts.js ya lo interpreta en
+applyTabHash() al cargar la página y en hashchange. Verifica para cada enlace que el idSeccion,
+grupo y destino existan en el HTML de la página (revisa los data-module-tab / data-target y
+el id de la <section>). Si el formato de hash de alguna página difiere del patrón de arriba
+(p. ej. los grupos nueva:ingresos o especiales:mejoramiento), ajusta el enlace al formato
+real que usa esa página, y reporta cuáles ajustaste. Si el usuario ya está en esa página,
+el clic debe cambiar la pestaña sin recargar.
+
+COMPORTAMIENTO
+1. Desktop: abrir al pasar el mouse (mouseenter) y cerrar al salir (mouseleave) con un
+   retraso de 150 a 200 ms para que no parpadee al mover el cursor hacia el panel.
+   Solo un desplegable abierto a la vez.
+2. Los submenús laterales (flyout) de Productos y Aprobaciones se abren al pasar el mouse
+   sobre cada ítem y salen a la derecha del panel; si no caben en pantalla, a la izquierda.
+3. Teclado y accesibilidad: abrir con focus, Enter o Flecha abajo; cerrar con Escape;
+   aria-expanded y aria-haspopup actualizados; el orden de tabulación sigue el menú.
+4. Touch y móvil (sin hover): el toque abre/cierra el desplegable como acordeón dentro
+   del menú móvil; el flyout pasa a lista anidada con sangría. El toque en el texto de la
+   opción abre el desplegable; navegar a la página principal queda disponible con el
+   primer ítem del desplegable (por ejemplo "Ir a Otorgamiento").
+5. Estilo: mismo estilo ya definido (panel blanco, sombra suave, filas con línea fina
+   separadora, hover verde claro). Muestra un chevron en cada opción que tenga desplegable
+   (también en Inicio, Otorgamiento, Documentación y Consulta, que hoy no lo tienen).
+6. Marca la opción de la página actual como activa (botón verde relleno) y el ítem actual
+   del desplegable con un indicador discreto.
+7. Reutiliza .nav-dropdown, .nav-toggle y .nav-menu; no dupliques estilos.
+
+LIMPIEZA OBLIGATORIA (por si quedó pendiente)
+- scripts.js contiene lógica del panel eliminado: siteNav, closeNav, setActiveNav,
+  updateActiveNav, tabNavLinks y el listener del botón ☰. Elimínala o protégela, sin
+  romper applyTabHash, activateModuleTab ni activatePolicyTab (window.CF_TABS).
+- sitio.js: bloque "ENLACES DEL ÍNDICE EN ESTA PÁGINA" y referencias a #siteNav.
+- Revisa la consola del navegador en las 11 páginas: no debe haber errores de JS.
+
+VERIFICACIÓN
+- Probar hover en cada opción, en las 11 páginas.
+- Probar cada enlace del desplegable, estando en la misma página y viniendo desde otra
+  página: debe abrir la pestaña correcta y hacer scroll a la sección.
+- Probar en ancho móvil (≈380 px) y con solo teclado.
+- Entregar resumen de archivos modificados y lista de enlaces cuyo hash hubo que ajustar.
+
+NO HACER
+- No cambies contenido normativo ni textos de las políticas.
+- No agregues librerías nuevas.
+- No quites el buscador global (Ctrl+K) ni la barra de progreso de lectura.

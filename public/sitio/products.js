@@ -8,8 +8,6 @@
     usada:
       '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 16a3 3 0 1 0 6 0"/><path d="m15 13 1 3-3 1"/></svg>',
     vip: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="m12 12 1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/></svg>',
-    empleados:
-      '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M18 4h3v3"/></svg>',
     mejoramiento:
       '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2.3-2.3z"/></svg>',
     acabados:
@@ -25,86 +23,8 @@
       id: "vivienda-nueva",
       icon: "nueva",
       title: "Vivienda nueva VIS y NO VIS",
-      lead: "Financiación para adquisición de vivienda nueva en proyectos previamente evaluados por Credifamilia.",
-      intro:
-        "Antes de estudiar al cliente, Credifamilia realiza una evaluación del constructor y del proyecto, verificando aspectos técnicos, jurídicos, financieros, urbanísticos y de calidad de la vivienda.",
+      lead: "Financiación para adquisición de vivienda nueva VIS y NO VIS, conforme al Anexo 6-A.",
       blocks: [
-        {
-          h: "🔎 Análisis del proyecto",
-          p: "Credifamilia evalúa previamente:",
-          subs: [
-            {
-              h: "Constructor",
-              list: [
-                "Experiencia en desarrollo de proyectos de construcción financiados por la banca hipotecaria.",
-                "Experiencia del equipo profesional de gerencia, diseño, construcción y ventas en proyectos de vivienda.",
-                "Solvencia moral e idoneidad técnica.",
-                "Situación financiera favorable.",
-                "Utilización de esquema de patrimonio autónomo o fideicomiso para el desarrollo del proyecto.",
-              ],
-            },
-            {
-              h: "Información mínima del proyecto",
-              list: [
-                "Descripción general.",
-                "Planos con las áreas del proyecto.",
-                "Especificaciones generales.",
-                "Equipamiento urbano.",
-              ],
-            },
-            {
-              h: "Estudios técnicos",
-              list: [
-                "Informe técnico.",
-                "Razonabilidad de costos de construcción, ventas y lote.",
-                "Relación entre costos del proyecto y ventas totales.",
-                "Programación y velocidad de construcción.",
-                "Factibilidad técnica, comercial y financiera.",
-                "Visitas de verificación al proyecto.",
-              ],
-            },
-            {
-              h: "Estudios jurídicos",
-              list: [
-                "Estudio de títulos.",
-                "Reglamento de Propiedad Horizontal.",
-                "Minuta de compraventa e hipoteca.",
-              ],
-            },
-            {
-              h: "Calidad de la vivienda",
-              p: "La vivienda debe contar con acabados mínimos que permitan su habitabilidad y, como mínimo, con:",
-              list: [
-                "Habitación.",
-                "Baño.",
-                "Cocina.",
-                "Zona de ropas o patio.",
-                "Salón comedor o barra.",
-                "Buena distribución.",
-                "Ventilación e iluminación adecuadas.",
-              ],
-            },
-            {
-              h: "Urbanización y entorno",
-              p: "Se revisan, entre otros:",
-              list: [
-                "Zonas verdes.",
-                "Zonas sociales.",
-                "Administración.",
-                "Parqueaderos.",
-                "Seguridad.",
-                "Vías de acceso.",
-                "Cercanía a colegios y centros médicos.",
-                "Acceso a TransMilenio y otros medios de transporte.",
-                "Aspectos relacionados con el barrio y participación comunitaria.",
-              ],
-            },
-          ],
-          note: {
-            type: "warn",
-            text: "Importante: esta evaluación del proyecto se realiza antes del otorgamiento. En esta etapa no existe obligación para el cliente de entregar documentos y la preaprobación no genera obligación de desembolso para Credifamilia.",
-          },
-        },
         {
           h: "VIS y NO VIS",
           p: "Dentro del producto de vivienda nueva se deben consultar las condiciones específicas según corresponda a VIS o NO VIS y al sistema de amortización elegido.",
@@ -127,6 +47,7 @@
               h: "Plazo",
               list: [
                 "Entre 5 y 20 años.",
+                "Hasta 25 años para asalariados o pensionados con Acierta ≥ 730 (numeral 2.1.4.1).",
                 "Para plazos superiores a 15 años se establece condición de Acierta ≥ 690.",
                 "Para extranjeros con PPT, el plazo estará limitado por la vigencia de la certificación PPT.",
               ],
@@ -148,7 +69,6 @@
               h: "Monto",
               list: [
                 "Hasta el LTV permitido, con máximo de 150 SMMLV o el tope máximo definido por el Gobierno.",
-                "En casos de renovación urbana puede llegar hasta 175 SMMLV.",
                 "Si el monto es inferior a 10 SMMLV, se debe validar con el área Financiera la viabilidad del desembolso.",
               ],
             },
@@ -168,9 +88,9 @@
             {
               h: "Regla general",
               list: [
-                "Mínimo 10 % del valor de la vivienda.",
-                "Para clientes Premium puede reducirse al 5 %, sujeto a revisión de Fábrica conforme a las políticas de riesgo aprobadas por Junta Directiva.",
-                "Para otros perfiles, la política contempla un mínimo del 20 %, sujeto a las condiciones correspondientes.",
+                "Acierta de 658 a 729: mínimo 8 %.",
+                "Acierta de 730 o superior: mínimo 5 %.",
+                "Verificar siempre la matriz completa de recursos propios y LTV del numeral 2.1.4.4.",
               ],
             },
           ],
@@ -181,50 +101,55 @@
     {
       id: "vip",
       icon: "vip",
-      title: "VIP",
-      lead: "Viviendas con condiciones particulares dentro de la política de vivienda nueva.",
-      intro:
-        "Las políticas generales de VIP son las mismas de vivienda nueva, excepto por las condiciones específicas establecidas para este producto.",
+      title: "VIP y VIPA",
+      lead: "Viviendas VIP y VIPA con las condiciones del numeral 2.3 y las excepciones del numeral 2.1.4.2.",
       blocks: [
         {
           h: "⏱️ Plazo",
-          list: ["Máximo 20 años, tanto para amortizaciones en Pesos como en UVR."],
+          list: [
+            "Máximo 20 años, tanto para amortizaciones en Pesos como en UVR.",
+            "Hasta 25 años para asalariados o pensionados con Acierta ≥ 730 (numeral 2.1.4.1).",
+          ],
         },
         {
           h: "📊 RCI",
           p: "El RCI puede llegar hasta 35 %, siempre que:",
           list: [
             "No cuente con subsidios.",
-            "Cumpla las políticas establecidas para clientes Premium en VIS.",
+            "Cumpla las políticas establecidas para clientes Premium.",
+            "Se revisen las condiciones del numeral 2.1.4.2 para la Bolsa VIP.",
           ],
+          note: {
+            type: "warn",
+            text: "VIPA no admite excepciones bajo ninguna circunstancia.",
+          },
         },
         {
           h: "💰 Recursos propios",
 
           subs: [
             {
-              h: "Regla general",
+              h: "Aporte mínimo según Acierta",
               list: [
-                "Mínimo 10 % del valor de la vivienda.",
-                "Puede ser 8 % para plazos de 20 años.",
+                "Acierta de 658 a 729: mínimo 8 %.",
+                "Acierta de 730 o superior: mínimo 5 %.",
+                "Verificar siempre la matriz completa del numeral 2.1.4.4.",
               ],
             },
             {
-              h: "Empleados y pensionados",
-              p: "Se permite un porcentaje entre 5 % y 10 %, con LTV máximo del 80 %, siempre que se cumplan las condiciones establecidas:",
+              h: "Cliente Premium",
+              p: "Clasifica como Premium el asalariado o pensionado que cumpla simultáneamente:",
               list: [
-                "Acierta ≥ 740.",
-                "No presentar castigos o reestructuraciones vigentes o históricas en centrales de riesgo.",
-                "Calificación de centrales AA o A.",
-                "Si existen créditos vigentes sin calificación en centrales, Acierta ≥ 800.",
-                "Si el modelo interno arroja BB, debe existir experiencia financiera diferente de cuentas de ahorro o cuentas corrientes.",
-                "Contar con FNG cuando el LTV lo permita y exista cupo vigente.",
+                "Acierta ≥ 730.",
+                "Si tiene créditos vigentes sin calificación en centrales, Acierta ≥ 800.",
+                "Endeudamiento ≤ 20 % para primera o segunda vivienda.",
+                "Ingresos ≥ 1 SMMLV.",
               ],
             },
           ],
           note: {
             type: "info",
-            text: "Estas condiciones deben cumplirse tanto para la aprobación como para la carta definitiva.",
+            text: "Bolsa VIP (numeral 2.1.4.2): cuota inicial mínima del 10 % y plazo máximo de 20 años.",
           },
         },
         {
@@ -270,7 +195,17 @@
             },
           ],
         },
-        { h: "⏱️ Plazo", list: ["De 5 a 20 años."] },
+        {
+          h: "📊 RCI",
+          list: [
+            "Vivienda usada VIS: hasta 40 %.",
+            "Vivienda usada NO VIS sin subsidio: hasta 40 % con Acierta ≥ 730; 30 % por debajo de 730.",
+          ],
+        },
+        {
+          h: "⏱️ Plazo",
+          list: ["De 5 a 20 años; hasta 25 años para asalariados o pensionados con Acierta ≥ 730."],
+        },
         {
           h: "🏡 Uso del inmueble",
           list: [
@@ -326,82 +261,6 @@
               ],
             },
           ],
-        },
-      ],
-    },
-
-    {
-      id: "empleados",
-      icon: "empleados",
-      title: "Empleados Credifamilia",
-      lead: "Condiciones especiales establecidas por la Junta Directiva para funcionarios de Credifamilia.",
-      blocks: [
-        {
-          h: "🏡 Tipo de vivienda",
-          list: [
-            "Vivienda nueva en proyectos financiados por Credifamilia.",
-            "Por excepción de Presidencia pueden revisarse viviendas en proyectos donde la compañía no tenga presencia o viviendas usadas.",
-          ],
-        },
-        {
-          h: "💰 Condiciones",
-          subs: [
-            { h: "Amortización", list: ["UVR o Pesos."] },
-            {
-              h: "Tasa",
-              list: [
-                "Super Tasa vigente al momento del desembolso, sin superar las tasas máximas legales.",
-                "Se mantiene mientras el empleado permanezca vinculado a la compañía, de acuerdo con las reglas establecidas para retiro.",
-              ],
-            },
-            {
-              h: "Modalidad",
-              list: [
-                "Mes vencido.",
-                "Con autorización de descuento por nómina.",
-                "El descuento por nómina no puede superar el 50 % del ingreso.",
-              ],
-            },
-            { h: "Vigencia de aprobación", list: ["180 días hasta la firma de la escritura."] },
-          ],
-        },
-        {
-          h: "👤 Antigüedad",
-          list: [
-            "Contrato a término indefinido.",
-            "Mínimo 1 año al momento de solicitar el crédito.",
-            "Se acepta la sumatoria de todos los tipos de contrato.",
-          ],
-        },
-        {
-          h: "📌 Condiciones adicionales",
-          p: "Se requiere:",
-          list: [
-            "Visto bueno del jefe directo.",
-            "Visto bueno del Vicepresidente/Gerente del área.",
-            "Evaluaciones de desempeño satisfactorias.",
-            "El producto es únicamente para primera vivienda.",
-          ],
-        },
-        {
-          h: "💼 Comisión",
-          list: [
-            "Los créditos hipotecarios para funcionarios no generan comisión al asesor, ni por aprobación ni por desembolso.",
-          ],
-        },
-        {
-          h: "⚠️ Excepciones",
-          p: "Solo pueden otorgarse con visto bueno de:",
-          list: ["Presidencia.", "Gerencia de Riesgo."],
-        },
-        {
-          h: "💳 Gastos",
-          p: "El empleado asume:",
-          list: ["Avalúo.", "Estudio de títulos."],
-          note: {
-            type: "info",
-            text: "Adicionalmente, debe cumplir las políticas de endeudamiento, centrales de riesgo y documentación.",
-          },
         },
       ],
     },
@@ -587,26 +446,20 @@
     [
       "🏡 Vivienda nueva VIS / NO VIS",
       "Adquisición de vivienda nueva",
-      "5 a 20 años",
-      "Proyecto y constructor deben ser evaluados",
+      "5 a 20 años; hasta 25 con Acierta ≥ 730",
+      "VIS y NO VIS: ingresos, aceptación y rechazo",
     ],
     [
-      "⭐ VIP",
-      "Vivienda VIP",
-      "Máx. 20 años",
-      "Condiciones especiales de RCI, FNG y recursos propios",
+      "⭐ VIP y VIPA",
+      "Vivienda VIP y VIPA",
+      "20 años; hasta 25 con Acierta ≥ 730",
+      "RCI 30 % a 35 %; VIPA sin excepciones",
     ],
     [
       "🏠 Vivienda usada",
       "Adquisición de vivienda usada",
-      "5 a 20 años",
-      "Condiciones específicas de inmueble y garantía",
-    ],
-    [
-      "👩‍💼 Empleados Credifamilia",
-      "Vivienda para funcionarios",
-      "Según producto",
-      "Condiciones especiales y descuento por nómina",
+      "5 a 20 años; hasta 25 con Acierta ≥ 730",
+      "RCI 40 % NO VIS con Acierta ≥ 730; vetustez hasta 35 años",
     ],
     ["🛠️ Mejoramiento", "Remodelación y mejoras", "5 a 15 años", "Vivienda mínima de 81 SMMLV"],
     ["🎨 Acabados VIS", "Acabados de vivienda VIS en PH", "5 a 20 años", "LTV máximo 30 %"],
