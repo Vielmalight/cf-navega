@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="sitio.css">
+  <link rel="stylesheet" href="decoracion.css">
 </head>
 
 <body data-page="inicio">
@@ -23,9 +24,11 @@
   <main id="contenido">
     
 
-<section class="hero" id="inicio">
-
-      <div class="hero-copy">
+<section class="hero-banner" id="inicio" data-slider aria-roledescription="carrusel" aria-label="Portada de la wiki">
+  <div class="banner-track">
+    <article class="slide banner banner--intro is-active">
+      <div class="banner-inner">
+        <div class="hero-copy">
 
         <span class="eyebrow">
           POLÍTICA HIPOTECARIA CREDIFAMILIA
@@ -84,21 +87,50 @@
         </div>
 
       </div>
-
-      <div class="hero-visual-stack">
-
-        <div class="hero-logo">
-          <img
-            src="img/logo-credifamilia.png"
-            alt="Credifamilia - Para todos."
-            width="884"
-            height="385"
-          >
+        <div class="banner-art">
+          <div class="logo-card"><img src="img/logo-credifamilia.png" alt="Credifamilia - Para todos." width="884" height="385"></div>
         </div>
-
       </div>
-
-    </section>
+    </article>
+    <article class="slide banner">
+      <div class="banner-inner">
+        <div class="banner-text">
+          <span class="eyebrow">DOCUMENTACIÓN</span>
+          <h2>Arma el expediente completo</h2>
+          <p>Consulta la lista de verificación por perfil y etapa, con avance y descarga.</p>
+          <a class="btn primary" href="documentacion.html">Ir a documentación</a>
+        </div>
+        <div class="banner-art"><svg viewBox="0 0 400 260" role="img" aria-label="Lista de documentos verificada"><circle cx="200" cy="130" r="118" fill="#fff" opacity=".14"/><rect x="120" y="30" width="160" height="205" rx="16" fill="#fff" stroke="#064c3b" stroke-width="5"/><rect x="160" y="18" width="80" height="26" rx="10" fill="#064c3b"/><g fill="none" stroke="#17ae82" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="m147 88 9 9 17-18"/><path d="m147 135 9 9 17-18"/><path d="m147 182 9 9 17-18"/></g><g stroke="#cdeee3" stroke-width="9" stroke-linecap="round"><path d="M190 90h72M190 137h72M190 184h56"/></g><circle cx="96" cy="196" r="14" fill="#7a2e6e"/></svg></div>
+      </div>
+    </article>
+    <article class="slide banner">
+      <div class="banner-inner">
+        <div class="banner-text">
+          <span class="eyebrow">PRODUCTOS DE VIVIENDA</span>
+          <h2>Cada vivienda tiene sus reglas</h2>
+          <p>VIS y NO VIS, plazos, RCI, recursos propios y restricciones de VIPA.</p>
+          <a class="btn primary" href="vivienda-nueva.html">Ver vivienda nueva</a>
+        </div>
+        <div class="banner-art"><svg viewBox="0 0 400 260" role="img" aria-label="Casa"><circle cx="200" cy="130" r="118" fill="#fff" opacity=".14"/><path d="M70 130 200 36l130 94" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><rect x="96" y="124" width="208" height="110" rx="10" fill="#fff" stroke="#064c3b" stroke-width="6"/><rect x="172" y="162" width="56" height="72" rx="8" fill="#ffc72c"/><rect x="116" y="148" width="38" height="34" rx="6" fill="#e8f8f2" stroke="#17ae82" stroke-width="4"/><rect x="246" y="148" width="38" height="34" rx="6" fill="#e8f8f2" stroke="#17ae82" stroke-width="4"/><circle cx="214" cy="200" r="4" fill="#064c3b"/><circle cx="330" cy="206" r="13" fill="#7a2e6e"/></svg></div>
+      </div>
+    </article>
+    <article class="slide banner">
+      <div class="banner-inner">
+        <div class="banner-text">
+          <span class="eyebrow">APROBACIONES</span>
+          <h2>Sabe quién aprueba y cuándo</h2>
+          <p>Atribuciones de crédito, Comité de Garantías y conceptos autorizados para excepciones.</p>
+          <a class="btn primary" href="instancias.html">Ver instancias</a>
+        </div>
+        <div class="banner-art"><svg viewBox="0 0 400 260" role="img" aria-label="Escudo de aprobación"><circle cx="200" cy="130" r="118" fill="#fff" opacity=".14"/><path d="M200 28 292 62v72c0 54-40 86-92 104-52-18-92-50-92-104V62z" fill="#fff" stroke="#064c3b" stroke-width="7" stroke-linejoin="round"/><path d="m158 138 30 30 56-62" fill="none" stroke="#17ae82" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="84" cy="210" r="13" fill="#7a2e6e"/></svg></div>
+      </div>
+    </article>
+  </div>
+  <button class="slider-btn slider-prev" type="button" aria-label="Imagen anterior">&#8249;</button>
+  <button class="slider-btn slider-next" type="button" aria-label="Imagen siguiente">&#8250;</button>
+  <div class="slider-dots"></div>
+  <div class="slider-bar"><span></span></div>
+</section>
 
 <section
       class="section"
@@ -356,6 +388,7 @@
 
   <script src="scripts.js"></script>
   <script src="sitio.js"></script>
+  <script src="portada-slider.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,706 @@
+/* =========================================================
+   DECORACIÓN - Wiki Hipotecaria Credifamilia
+   Mantiene el verde de la marca. Solo AGREGA fondos, formas
+   y pequeños detalles amarillos y ciruela.
+   Cargar DESPUÉS de sitio.css. Para quitarlo, borra su <link>.
+   ========================================================= */
+
+:root {
+  --sun: #ffc72c;
+  --sun-soft: #fff3c6;
+  --plum: #7a2e6e;
+  --plum-soft: #f3e4f0;
+}
+
+/* ---------- Fondo con diseño (los colores base no cambian) ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(480px 480px at 0% 0%, rgba(43, 187, 146, 0.16), transparent 70%),
+    radial-gradient(420px 420px at 100% 12%, rgba(255, 199, 44, 0.2), transparent 70%),
+    radial-gradient(520px 520px at 100% 100%, rgba(122, 46, 110, 0.1), transparent 70%),
+    radial-gradient(rgba(23, 174, 130, 0.13) 1.4px, transparent 1.6px) 0 0 / 26px 26px;
+}
+
+::selection {
+  background: var(--sun);
+  color: #064c3b;
+}
+
+/* ---------- Encabezado: línea de colores abajo ---------- */
+.site-header {
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #17ae82, var(--sun), var(--plum)) 1;
+}
+
+/* ---------- Portada ---------- */
+.hero {
+  background:
+    radial-gradient(60% 90% at 88% 10%, rgba(23, 174, 130, 0.14), transparent 62%),
+    radial-gradient(38% 60% at 96% 90%, rgba(255, 199, 44, 0.22), transparent 70%),
+    repeating-radial-gradient(circle at 0% 100%, rgba(23, 174, 130, 0.09) 0 2px, transparent 2px 22px);
+}
+
+.hero-logo {
+  box-shadow: 10px 10px 0 rgba(255, 199, 44, 0.4), 0 18px 40px rgba(6, 76, 59, 0.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-logo {
+    animation: flotar 6s ease-in-out infinite;
+  }
+}
+
+@keyframes flotar {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Puntito amarillo antes de cada etiqueta pequeña */
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 3px var(--sun-soft);
+}
+
+/* Barrita de color bajo los títulos de sección */
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #17ae82 0 55%, var(--sun) 55% 80%, var(--plum) 80%);
+}
+
+/* ---------- Tarjetas: formas decorativas en la esquina ---------- */
+.module-card,
+.info-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::after,
+.info-card::after {
+  content: "";
+  position: absolute;
+  right: -28px;
+  bottom: -28px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 199, 44, 0.3), transparent 70%);
+  pointer-events: none;
+}
+
+.module-card:nth-child(3n + 2)::after,
+.info-card:nth-child(3n + 2)::after {
+  background: radial-gradient(circle, rgba(23, 174, 130, 0.24), transparent 70%);
+}
+
+.module-card:nth-child(3n)::after,
+.info-card:nth-child(3n)::after {
+  background: radial-gradient(circle, rgba(122, 46, 110, 0.16), transparent 70%);
+}
+
+.module-icon {
+  box-shadow: 0 0 0 4px var(--sun-soft);
+}
+
+.module-card:nth-child(3n) .module-icon {
+  box-shadow: 0 0 0 4px var(--plum-soft);
+}
+
+/* ---------- Secciones alternas con puntitos ---------- */
+.section.alt {
+  background:
+    radial-gradient(rgba(23, 174, 130, 0.12) 1.2px, transparent 1.4px) 0 0 / 22px 22px,
+    #ffffff;
+}
+
+/* ---------- Pie de página: franja de colores arriba ---------- */
+footer {
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, #17ae82, var(--sun), var(--plum)) 1;
+}
+
+
+/* =========================================================
+   PORTADA: banner de ancho completo con carrusel
+   ========================================================= */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(120deg, #0b8466 0%, #17ae82 58%, #43c6a1 100%);
+}
+
+/* Logo gigante de fondo, en blanco suave */
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  width: min(900px, 70%);
+  height: 420px;
+  transform: translateY(-50%);
+  background: url("img/logo-credifamilia.png") center / contain no-repeat;
+  filter: brightness(0) invert(1);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  left: -90px;
+  bottom: -90px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 32px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.banner-track {
+  position: relative;
+  z-index: 1;
+  display: grid;
+}
+
+.slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.slide.is-active,
+.hero-banner:not(.is-ready) .slide:first-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+.banner-inner {
+  width: min(var(--max-width), 94%);
+  min-height: 560px;
+  margin: 0 auto;
+  padding: 56px 48px 84px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Textos sobre fondo verde */
+.hero-banner h1,
+.hero-banner h2 {
+  color: #ffffff;
+}
+
+.hero-banner .eyebrow {
+  background: var(--sun);
+  color: #064c3b;
+}
+
+.hero-banner .eyebrow::before {
+  display: none;
+}
+
+.hero-banner .hero-copy > p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-banner .policy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero-banner .policy-meta span {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.hero-banner .notice {
+  background: #ffffff;
+  border-color: #ffffff;
+  border-left: 5px solid var(--sun-deep, #f5ae00);
+  color: #17322b;
+}
+
+.hero-banner .btn.primary {
+  background: #ffffff;
+  color: #0b7a5c;
+  box-shadow: 0 8px 18px rgba(3, 50, 38, 0.25);
+}
+
+.hero-banner .btn.primary:hover {
+  background: var(--sun);
+  color: #064c3b;
+}
+
+.hero-banner .btn.ghost {
+  border: 2px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+}
+
+.hero-banner .btn.ghost:hover {
+  background: #ffffff;
+  color: #0b7a5c;
+}
+
+/* Banners 2, 3 y 4 */
+.banner-text h2 {
+  max-width: 560px;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.banner-text p {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.banner-text .btn {
+  margin-top: 26px;
+}
+
+.banner-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.banner-art::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 6%;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--sun);
+  opacity: 0.9;
+}
+
+.banner-art svg {
+  position: relative;
+  width: min(100%, 430px);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(3, 50, 38, 0.28));
+}
+
+.logo-card {
+  position: relative;
+  width: min(100%, 460px);
+  padding: 34px 30px;
+  border-radius: 30px 10px 30px 10px;
+  background: #ffffff;
+  box-shadow: 12px 12px 0 rgba(255, 199, 44, 0.55), 0 24px 50px rgba(3, 50, 38, 0.25);
+}
+
+.logo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Flechas grandes a los lados, puntos y barra de tiempo */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 48px;
+  height: 64px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 56px;
+  line-height: 1;
+  cursor: pointer;
+  text-shadow: 0 2px 10px rgba(3, 50, 38, 0.4);
+}
+
+.slider-btn:hover {
+  color: var(--sun);
+}
+
+.slider-prev {
+  left: 4px;
+}
+
+.slider-next {
+  right: 4px;
+}
+
+.slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.slider-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.slider-dots button.is-active {
+  width: 28px;
+  border-radius: 99px;
+  background: var(--sun);
+}
+
+.slider-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.slider-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--sun);
+}
+
+.slider-bar span.run {
+  animation: sliderbar 20s linear forwards;
+}
+
+.hero-banner.is-paused .slider-bar span {
+  animation-play-state: paused;
+}
+
+@keyframes sliderbar {
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .banner-inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 36px 28px 76px;
+  }
+
+  .banner-art {
+    order: -1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .slider-btn {
+    width: 36px;
+    font-size: 42px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   PÁGINAS INTERNAS: más color, banner verde y fondos con vida
+   ========================================================= */
+
+/* Fondo con manchas de color (transparente, deja ver los puntitos) */
+body[data-page]:not([data-page="inicio"]) main {
+  background:
+    var(--deco-tiles),
+    radial-gradient(720px 380px at 0% 0%, rgba(23, 174, 130, 0.18), transparent 70%),
+    radial-gradient(560px 360px at 100% 28%, rgba(255, 199, 44, 0.16), transparent 70%),
+    radial-gradient(640px 420px at 0% 72%, rgba(122, 46, 110, 0.08), transparent 70%),
+    linear-gradient(180deg, rgba(232, 248, 242, 0.7), rgba(255, 255, 255, 0) 520px);
+}
+
+/* Banner del título: mismo estilo verde del inicio */
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head {
+  border: 0;
+  background:
+    radial-gradient(90% 140% at 100% 0%, rgba(255, 255, 255, 0.2), transparent 55%),
+    linear-gradient(120deg, #0b8466 0%, #17ae82 60%, #43c6a1 100%);
+  box-shadow: 0 22px 44px -26px rgba(6, 76, 59, 0.6);
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo gigante de fondo en blanco suave */
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head::before {
+  content: "";
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  width: 420px;
+  height: 200px;
+  transform: translateY(-50%);
+  background: url("img/logo-credifamilia.png") center / contain no-repeat;
+  filter: brightness(0) invert(1);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Aro decorativo en la esquina */
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head::after {
+  right: -60px;
+  top: -90px;
+  width: 240px;
+  height: 240px;
+  border: 26px solid rgba(255, 255, 255, 0.12);
+  background: none;
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head h2 {
+  color: #ffffff;
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head > p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head .eyebrow {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: #064c3b;
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head .eyebrow::before {
+  display: none;
+}
+
+body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head h2::after {
+  background: linear-gradient(90deg, #ffffff 0 55%, var(--sun) 55% 100%);
+}
+
+/* Tablas con encabezado verde y filas con vida */
+thead th {
+  background: #17ae82;
+  color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+  background: #f4fcf9;
+}
+
+tbody tr:hover {
+  background: #fff8dc;
+}
+
+/* Cajas y paneles con borde de color arriba */
+.panel,
+.doc-filter,
+.doc-card {
+  border-top: 4px solid #17ae82;
+  box-shadow: 0 14px 30px -20px rgba(6, 76, 59, 0.35);
+}
+
+@media (max-width: 700px) {
+  body[data-page]:not([data-page="inicio"]) main > .section:first-of-type > .section-head::before {
+    width: 260px;
+    right: -30px;
+  }
+}
+
+
+/* =========================================================
+   ADORNOS EN TODA LA WEB (tarjetas, botones, íconos, fondos)
+   ========================================================= */
+
+/* Formas de colores a los lados, repetidas en toda la página */
+:root {
+  --deco-tiles:
+    radial-gradient(circle at 0 260px, rgba(255, 199, 44, 0.32) 0 70px, transparent 71px) 0 0 / 100% 1100px repeat-y,
+    radial-gradient(circle at 100% 640px, transparent 0 80px, rgba(23, 174, 130, 0.28) 81px 104px, transparent 105px) 0 0 / 100% 1100px repeat-y,
+    radial-gradient(circle at 0 900px, rgba(122, 46, 110, 0.18) 0 46px, transparent 47px) 0 0 / 100% 1100px repeat-y,
+    radial-gradient(circle at 100% 120px, rgba(255, 199, 44, 0.22) 0 40px, transparent 41px) 0 0 / 100% 1100px repeat-y;
+}
+
+main {
+  background: var(--deco-tiles);
+}
+
+/* Tarjetas: círculos de color en la esquina + barra lateral de color */
+:is(
+  .glossary-item,
+  .glossary-card,
+  .faq-item,
+  .doc-item,
+  .concept-card,
+  .exception-card,
+  .product-card,
+  .policy-card,
+  .check-card,
+  .profile-tile,
+  .mini-card,
+  .number-card,
+  .stat-card,
+  .flow-node,
+  .prod-block
+):not([class*="--"]) {
+  --deco: rgba(255, 199, 44, 0.32);
+  --deco2: rgba(255, 199, 44, 0.22);
+  --bar: #ffc72c;
+  background-image:
+    radial-gradient(circle at 100% 100%, var(--deco) 0 34px, transparent 35px),
+    radial-gradient(circle at 100% 100%, transparent 0 46px, var(--deco2) 47px 56px, transparent 57px),
+    linear-gradient(180deg, #ffffff, #f5fcf8);
+  box-shadow: inset 5px 0 0 var(--bar), var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+:is(
+  .glossary-item,
+  .glossary-card,
+  .faq-item,
+  .doc-item,
+  .concept-card,
+  .exception-card,
+  .product-card,
+  .policy-card,
+  .check-card,
+  .profile-tile,
+  .mini-card,
+  .number-card,
+  .stat-card,
+  .flow-node,
+  .prod-block
+):not([class*="--"]):nth-child(3n + 2) {
+  --deco: rgba(23, 174, 130, 0.28);
+  --deco2: rgba(23, 174, 130, 0.2);
+  --bar: #17ae82;
+}
+
+:is(
+  .glossary-item,
+  .glossary-card,
+  .faq-item,
+  .doc-item,
+  .concept-card,
+  .exception-card,
+  .product-card,
+  .policy-card,
+  .check-card,
+  .profile-tile,
+  .mini-card,
+  .number-card,
+  .stat-card,
+  .flow-node,
+  .prod-block
+):not([class*="--"]):nth-child(3n) {
+  --deco: rgba(122, 46, 110, 0.2);
+  --deco2: rgba(122, 46, 110, 0.14);
+  --bar: #7a2e6e;
+}
+
+:is(
+  .glossary-item,
+  .glossary-card,
+  .faq-item,
+  .doc-item,
+  .concept-card,
+  .exception-card,
+  .product-card,
+  .policy-card,
+  .check-card,
+  .profile-tile,
+  .mini-card,
+  .number-card,
+  .stat-card,
+  .flow-node,
+  .prod-block
+):not([class*="--"]):hover {
+  transform: translateY(-3px);
+  border-color: #17ae82;
+  box-shadow: inset 5px 0 0 var(--bar), var(--shadow-md);
+}
+
+/* Botones de filtro y pestañas: se iluminan en amarillo al pasar el mouse */
+:is(.chip-btn, .tab, .module-tab, .seg-tab, .pill, .small-btn, .text-btn, .guide-option, .indep-btn):not(.is-active):not(.active):hover {
+  background: var(--sun-soft);
+  border-color: var(--sun-deep);
+  color: #064c3b;
+  transform: translateY(-2px);
+}
+
+:is(.chip-btn, .tab, .module-tab, .seg-tab, .pill, .small-btn, .text-btn, .guide-option, .indep-btn) {
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Íconos y números con aro de color */
+:is(.doc-icon, .profile-icon, .product-icon, .prod-detail-icon) {
+  box-shadow: 0 0 0 4px var(--sun-soft);
+}
+
+:is(.flow-number, .step-num, .num, .result-circle) {
+  box-shadow: 0 0 0 4px var(--sun-soft);
+}
+
+/* Títulos de bloque con marca de color */
+:is(.doc-group-title, .block-head h3, .prod-detail-head h3) {
+  padding-left: 12px;
+  border-left: 5px solid var(--sun);
+}
+
+/* Buscadores y campos: borde verde y brillo amarillo al escribir */
+:is(input, select, textarea):focus {
+  border-color: #17ae82;
+  box-shadow: 0 0 0 4px rgba(255, 199, 44, 0.35);
+  outline: none;
+}
+
+/* Migas de pan con franja de colores */
+.breadcrumb {
+  background: linear-gradient(90deg, rgba(23, 174, 130, 0.18), rgba(255, 199, 44, 0.18), rgba(122, 46, 110, 0.1));
+}
+
+/* Botones anterior / siguiente al final de cada página */
+.page-pager a {
+  box-shadow: inset 5px 0 0 var(--sun), var(--shadow-sm);
+}
+
+/* Pie de página con puntitos */
+footer {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.4px, transparent 1.6px);
+  background-size: 22px 22px;
+}
